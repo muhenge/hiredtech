@@ -3,7 +3,9 @@
 
 <% if user_signed_in? %>
   <%= current_user.username %>
+  <%= current_user.career.field %>
   <%= link_to  "Logout", destroy_user_session_path %>
+  <%= link_to  "Edit profile", edit_user_registration_path %>
 <% else %>
   <%= link_to  "Connect", new_user_registration_path %>
 <% end %>

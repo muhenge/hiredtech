@@ -5,6 +5,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :username, presence: true, uniqueness: {case_sensitive: false}, format: {with: /\A[a-zA-Z0-9 _\.]*\z/}
+  
+  belongs_to :career
 
   def self.find_first_by_auth_conditions(warden_conditions)
     condition = warden_conditions.dup
