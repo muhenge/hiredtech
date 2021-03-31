@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: {case_sensitive: false}, format: {with: /\A[a-zA-Z0-9 _\.]*\z/}
   
   belongs_to :career
-
+  has_many :skills
   def self.find_first_by_auth_conditions(warden_conditions)
     condition = warden_conditions.dup
     if login = condition.delete(:login)
