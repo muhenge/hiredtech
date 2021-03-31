@@ -16,6 +16,8 @@
     <div class="field">
   <%= f.collection_select(:career_id, Career.all, :id, :field, :prompt => 'Select your title', class:"form-select") %>
   </div>
+   <div class="field">
+   
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
