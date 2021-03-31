@@ -17,6 +17,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/edit
   def edit
     @skill = Skill.new
+    @user_skills = current_user.skills
   end
 
   # PUT /resource

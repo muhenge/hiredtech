@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
-    before_action :user_params, only: %i[show]
+    before_action :set_user, only: %i[show]
     def index
         @users = User.all
     end
 
     def show
-        
+        @skill = Skill.new
+        @user_skills = @user.skills
     end
     
     private
