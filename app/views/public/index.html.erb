@@ -4,12 +4,14 @@
 <% if user_signed_in? %>
   <%= current_user.username %>
   <%= current_user.career.field %>
+
   <% @user_skills.each do |skills| %>
     <%= skills.name %>
     <%= skills.level %>
   <%end%>
   <%= link_to  "Logout", destroy_user_session_path %>
   <%= link_to  "Edit profile", edit_user_registration_path %>
+  <%= link_to  current_user.username, current_user_skills_path %>
 <% else %>
   <%= link_to  "Connect", new_user_registration_path %>
 <% end %>

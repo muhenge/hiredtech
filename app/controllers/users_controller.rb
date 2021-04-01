@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
     before_action :set_user, only: %i[show]
+    before_action :authenticate_user!, only: %i[:show]
     def index
         @users = User.all
     end
@@ -8,6 +9,12 @@ class UsersController < ApplicationController
         @skill = Skill.new
         @user_skills = @user.skills
     end
+
+    def current_user_skills
+        @curr_skills = current_user.skills
+        @skill = Skill.new
+    end
+    
     
     private
 

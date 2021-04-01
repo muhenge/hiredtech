@@ -1,18 +1,22 @@
 
 
 
-   <%= @user.username %>
+ <%= @user.username %>
   <% @user_skills.each do |skills| %>
   <%= skills.name %>
   <%= skills.level %>
   <%end%>
 
 
-  
-    <%= form_with model: [@skill], local: true do |f| %>
-      <%= f.text_field :name %> <%= f.number_field :level %>
-      <%= f.submit "Add skills"%>
-    <%end%>
+
+
+
+
+
+
+
+
+
 
   
  

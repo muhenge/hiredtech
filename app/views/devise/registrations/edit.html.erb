@@ -16,8 +16,7 @@
   <%= f.collection_select(:career_id, Career.all, :id, :field, :prompt => 'Select your title', class:"form-select") %>
   </div>
   
- 
-
+    <%= f.text_field :name %> <%= f.number_field :level %>
   <div class="field">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "new-password" %>

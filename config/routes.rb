@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   #   # get 'signin', to: 'users/sessions#new'
   # end
   resources :users, only: %i[show index]
+  get "/current_user_skills", to: "users#current_user_skills"
   root to: 'public#index'
   get 'public/private'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
