@@ -4,40 +4,35 @@
        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 <div class="field">
-    <%= f.text_field :firstname, autofocus: true, autocomplete: "firstname", placeholder:"Firstname" %>
-    <%= f.text_field :firstname, autofocus: true, autocomplete: "firstname", placeholder:"Lastname" %>
-  </div>
+    <%= f.text_field :firstname, autofocus: true, autocomplete: "firstname", placeholder:"First name" %><br><br>
+    <%= f.text_field :firstname, autofocus: true, autocomplete: "firstname", placeholder:"Last name" %>
+  </div><br>
   <div class="field">
     <%= f.text_field :username, autofocus: true, autocomplete: "username",placeholder:"Username" %>
-  </div>
+  </div><br>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder:"email" %>
+  </div><br>
     <div class="field">
   <%= f.collection_select(:career_id, Career.all, :id, :field, :prompt => 'Select your title', class:"form-select") %>
-  </div>
+  </div><br>
    <div class="field">
    
   <div class="field">
-    <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <%= f.password_field :password, autocomplete: "new-password",placeholder:"Password" %>
+  </div><br>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password",placeholder:"confirm password" %>
+  </div><br>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up",class:"my-btn" %>
   </div>
-<% end %>
+<% end %><br>
 
-<%= render "devise/shared/links" %>
-    </div>
-</section>
+<%= link_to  "You already have an account? Login here.", new_user_session_path, class:"text-secondary align-center d-flex justify-content-center" %>
 
