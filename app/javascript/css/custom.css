@@ -23,7 +23,7 @@ body {
     top: 5%
   }
 
-.file  {
+/* .file  {
     position: relative;
     overflow: hidden;
   }
@@ -120,10 +120,10 @@ body {
     background-color: #f6f9fb;
     border-left: 2px solid #5b9bd1;
     margin-left: -2px;
-  }
+  } */
   
   /* Profile Content */
-  .profile-content {
+  /* .profile-content {
     padding: 20px;
     background: #fff;
     min-height: 460px;
@@ -138,17 +138,59 @@ body {
 
   a.btnn:hover {
     color: white !important;
-  }
+  } */
 
 a.dark-btn {
-  border: 1px solid darkblue;
-  color: darkblue;
+  background: #4154f1;
+  padding: 8px 20px;
+  margin-left: 30px;
+  border-radius: 4px;
+  color: #fff !important;
   text-decoration: none;
-  padding: 10px 50px 10px 40px;
-  border-radius: 20px;
 }
 
 a.dark-btn:hover {
-  background-color: darkblue;
+  background-color: #2835b1;
   color: white;
+}
+
+a.dark-btn:focus {
+  background-color: #2835b1;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+}
+
+.register-photo {
+  background-color: #f1f7fc;
+  padding: 80px 0;
+}
+
+.register-photo .image-holder {
+  display: table-cell;
+  width: auto;
+  background-color: teal;
+  background-size: cover;
+}
+
+.register-photo .form-container {
+  display: table;
+  max-width: 900px;
+  width: 90%;
+  margin: 0 auto;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+}
+
+.register-photo form {
+  padding: 40px;
+}
+
+.register-photo form {
+  display: table-cell;
+  width: 400px;
+  background-color: #ffffff;
+  padding: 40px 60px;
+  color: #505e6c;
 }
