@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :skills
   devise_for :user do
-    get '/users/sign_out' => ' devise/sessions#destroy'
+    # get '/users/sign_out' => ' devise/sessions#destroy'
   end
 
   # devise_for :users, controllers: {

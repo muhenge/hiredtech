@@ -1,38 +1,73 @@
 
+<div class="container bootstrap snippets bootdeys">
+    <div class="row" id="user-profile">
+        <div class="col-lg-3 col-md-4 col-sm-4">
+            <div class="main-box clearfix">
+                <h2> <%= @user.username %> </h2>
+                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="profile-img img-responsive center-block">
+                <div class="profile-label">
+                    <span class="label label-danger"><strong><%= @user.career.field%></strong></span>
+                </div>
 
+                <div class="profile-details">
+                    <h4></h4>
+                    <ul class="fa-ul">
+                        <%@user_skills.each do |skills|%>
+                          <li><%= skills.name %><%= skills.level %></li>
+                        <%end%>
+                    </ul>
+                </div>
 
- <%= @user.username %>
-  <% @user_skills.each do |skills| %>
-  <%= skills.name %>
-  <%= skills.level %>
-  <%end%>
+                <div class="profile-message-btn center-block text-center">
+                    <a href="#" class="btn btn-success">
+                        <i class="fa fa-envelope"></i> Send message
+                    </a>
+                </div>
+            </div>
+        </div>
 
+        <div class="col-lg-9 col-md-8 col-sm-8">
+            <div class="main-box clearfix">
+                <div class="profile-header">
+                    <h3><span>User info</span></h3>
+                    <a href="#" class="btn btn-primary edit-profile">
+                        <i class="fa fa-pencil-square fa-lg"></i> Edit profile
+                    </a>
+                </div>
 
--------------------------------------
-<% if user_signed_in? %>
-  <%= current_user.username %>
-  <%= current_user.career.field %>
+                <div class="row profile-user-info">
+                    <div class="col-sm-8">
+                        <div class="profile-user-details clearfix">
+                            <div class="profile-user-details-label">
+                                First Name
+                            </div>
+                            <div class="profile-user-details-value">
+                                <%= @user.firstname.capitalize %>
+                            </div>
+                        </div>
+                        <div class="profile-user-details clearfix">
+                            <div class="profile-user-details-label">
+                                Last Name
+                            </div>
+                            <div class="profile-user-details-value">
+                                <%= @user.lastname.capitalize %>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="col-sm-4 profile-social">
+                        <ul class="fa-ul">
+                            <li><strong>email: </strong> <%= mail_to "#{@user.email}"%> </li>
+                            
+                        </ul>
+                    </div>
+                </div>
 
-  <% @user_skills.each do |skills| %>
-    <%= skills.name %>
-    <%= skills.level %>
-  <%end%>
-  <%= link_to  "Logout", destroy_user_session_path %>
-  <%= link_to  "Edit profile", edit_user_registration_path %>
-  <%= link_to  current_user.username, current_user_skills_path %>
-<% else %>
-  <%= link_to  "Connect", new_user_registration_path %>
-<% end %>
- <%= form_with model: [@skill], local: true do |f| %>
-      <%= f.text_field :name %> <%= f.number_field :level %>
-      <%= f.submit "Add skills"%>
-    <%end%>
-  </div>
-<%@users.each do |user|%>
-  <%= link_to user.username, user_path(user)%>
-<%end%>
-
-
+               
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
