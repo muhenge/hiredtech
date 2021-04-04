@@ -11,6 +11,11 @@
 
                 <div class="profile-details">
                     <h4></h4>
+                    <% if @user.skills.empty? %>
+                      <span class="text-secondary">No skills registered<span>
+                    <% else %>
+                      
+                    <% end %>
                     <ul class="fa-ul">
                         <%@user_skills.each do |skills|%>
                           <li><%= skills.name %><%= skills.level %></li>
@@ -20,7 +25,7 @@
 
                 <div class="profile-message-btn center-block text-center">
                     <a href="#" class="btn btn-success">
-                        <i class="fa fa-envelope"></i> Send message
+                        <i class="fa fa-envelope"></i> Connect
                     </a>
                 </div>
             </div>

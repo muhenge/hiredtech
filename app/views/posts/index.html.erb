@@ -1,0 +1,5 @@
+<%= form_for Post.new, :url => posts_path(), :method => :post do |f| %>
+     <%= f.text_field :title, placeholder: "Content title" %>
+    <%= f.text_area :content, placeholder: "Post here" %>
+    <%= f.submit "Post",class:"btn post-btn" %>
+<%end%>
