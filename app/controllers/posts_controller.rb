@@ -1,8 +1,6 @@
 class PostsController < ApplicationController
-    before_action :set_post, only: %i[show edit update edit destroy vote]
-    before_action :authenticate_user!, only: %i[index upvote new create]
-   
-
+    before_action :set_post, only: %i[show edit update edit destroy]
+    before_action :authenticate_user!, only: [:create, :edit, :update, :show, :destory]
     def index
         @posts = Post.all
         # @user_interest = current_user.interest
@@ -10,9 +8,9 @@ class PostsController < ApplicationController
     end
 
     def show
-        @comment = Comment.new
-        @post_user = @post.user
-        @comments = @post.comments
+        # @comment = Comment.new
+        # @post_user = @post.user
+        # @comments = @post.comments
     end
 
     def new
@@ -20,8 +18,9 @@ class PostsController < ApplicationController
     end
 
     def create
-        @post = current_user.posts.build(post_params)
 
+        @post = current_user.posts.build(post_params)
+        
         if @post.save
             redirect_to posts_path
             flash[:notice] = 'Posted'
@@ -37,16 +36,10 @@ class PostsController < ApplicationController
         @post.update(post_params)
         redirect_to posts_path
     end
-
-    def destroy
-        Post.find(params[:id]).destroy
-        redirect_to posts_path
-    end
-
     private
 
     def post_params
-        params.require(:post).permit(:title, :content, :created_at)
+        params.require(:post).permit(:content, :career_id, :user_id, :created_at)
     end
 
     private
@@ -54,5 +47,4 @@ class PostsController < ApplicationController
     def set_post
         @post = Post.find(params[:id])
     end
-
 end
