@@ -34,9 +34,20 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4"></div>
-        <div class="col-md-4"></div>
+        <div class="col-md-2 bg-success h-100"></div>
+        <div class="col-md-8 mt-5 d-flex justify-content-center">
+            <% @posts.each do |post| %>
+             <%= link_to post_path(post), :action => 'go' do %>
+                <div>
+                    <p class="lead">
+                        <%= simple_format(post.content.truncate(200)) %>
+                    </p>
+                </div>
+            <%end%>
+            <div><%= link_to post.user.username, post_user_path(post, post.user) %></div>
+            <%end%>
+        </div>
+        <div class="col-md-2 bg-warning h-100"></div>
     </div>
 </div>
 
