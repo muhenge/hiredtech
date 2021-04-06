@@ -850,3 +850,15 @@ textarea.form-control {
   box-shadow: none;
   -webkit-box-shadow: none;
 }
+
+.post-btnn {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: white;
+  border-radius: 15px;
+  padding: 15px 0 15px 0;
+  font-size: larger;
+}
+
+.text {
+  border: 0;
+}
