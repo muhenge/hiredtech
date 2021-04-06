@@ -220,6 +220,7 @@ input:hover {
 input:focus {
   border: 0 !important;
   border-bottom: 1px solid gray !important;
+  outline: none;
 }
 
 .my-btn {
@@ -865,4 +866,23 @@ textarea.form-control {
 
 .text:focus {
   border: 0 !important;
+  outline: none;
 }
+
+.posts a {
+  text-decoration: none;
+  color: black !important;
+  width: 100%;
+}
+
+.posts a :hover {
+  text-decoration: none;
+}
+
+.post {
+  padding: 12px;
+  border: 1px solid rgba(187,187,187,0.8);
+  margin-top: 12px;
+  border-radius: 9px;
+}
+

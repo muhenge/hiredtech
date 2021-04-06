@@ -3,7 +3,6 @@ class PostsController < ApplicationController
     before_action :authenticate_user!, only: [:create, :edit, :update, :show, :destory]
     def index
         @posts = Post.all
-        
         # @user_interest = current_user.interest
         # @user_following = current_user.following
     end

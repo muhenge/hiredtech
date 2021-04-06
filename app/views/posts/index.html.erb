@@ -7,7 +7,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Post something</h5>
@@ -36,19 +36,19 @@
     <div class="row">
         <div class="col-md-2 bg-success h-100"></div>
         <div class="col-md-8 mt-5 d-flex justify-content-center">
-            <% @posts.each do |post| %>
-             <%= link_to post_path(post), :action => 'go' do %>
-                <div>
+            <div class="posts">
+           
+               <% @posts.each do |post| %>
+                
+               <div class="post">
+                <%= link_to post.user.username.capitalize, post_user_path(post, post.user) %>
                     <p class="lead">
-                        <%= simple_format(post.content.truncate(200)) %>
+                        <%= simple_format(post.content.capitalize.truncate(200)) %>
                     </p>
-                </div>
+              </div>
             <%end%>
-            <div><%= link_to post.user.username, post_user_path(post, post.user) %></div>
-            <%end%>
+            </div>
         </div>
         <div class="col-md-2 bg-warning h-100"></div>
     </div>
 </div>
-
-
