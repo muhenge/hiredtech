@@ -3,13 +3,14 @@ class PostsController < ApplicationController
     before_action :authenticate_user!, only: [:create, :edit, :update, :show, :destory]
     def index
         @posts = Post.all
-        @comment = Comment
+        
     end
 
     def show
+        @comment = Comment.new
         # @comment = Comment.new
         # @post_user = @post.user
-        # @comments = @post.comments
+        @comments = @post.comments
     end
 
     def new
