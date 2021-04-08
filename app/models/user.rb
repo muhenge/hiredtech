@@ -9,6 +9,7 @@ class User < ApplicationRecord
   belongs_to :career
   has_many :skills
   has_many :posts
+  has_many :comments
   def self.find_first_by_auth_conditions(warden_conditions)
     condition = warden_conditions.dup
     if login = condition.delete(:login)

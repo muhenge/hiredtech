@@ -3,8 +3,7 @@ class PostsController < ApplicationController
     before_action :authenticate_user!, only: [:create, :edit, :update, :show, :destory]
     def index
         @posts = Post.all
-        # @user_interest = current_user.interest
-        # @user_following = current_user.following
+        @comment = Comment
     end
 
     def show
@@ -39,7 +38,7 @@ class PostsController < ApplicationController
     private
 
     def post_params
-        params.require(:post).permit(:content, :career_id, :user_id, :created_at)
+        params.require(:post).permit(:content, :career_id,:comment_id, :user_id, :created_at)
     end
 
     private

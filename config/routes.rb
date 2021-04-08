@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'comments/create'
   resources :skills
   devise_for :user do
     # get '/users/sign_out' => ' devise/sessions#destroy'
@@ -15,7 +16,10 @@ Rails.application.routes.draw do
   # end
   resources :posts do
     resources :users
+    resources :comments
   end
+
+  resources :comments
   
   resources :users, only: %i[show index] do
     resources :posts
