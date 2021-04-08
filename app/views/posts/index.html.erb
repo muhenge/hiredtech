@@ -39,9 +39,10 @@
             <div class="posts">
            
                <% @posts.each do |post| %>
-                
+
                <div class="post">
                 <%= link_to post.user.username.capitalize, post_user_path(post, post.user) %>
+                <hr>
                     <p class="lead">
                         <%= link_to simple_format(post.content.capitalize.truncate(200)), post_path(post) %>
                        
