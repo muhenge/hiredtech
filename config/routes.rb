@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
   get 'comments/create'
   resources :skills
-  devise_for :user do
+  devise_for :user
     # get '/users/sign_out' => ' devise/sessions#destroy'
-  end
 
   # devise_for :users, controllers: {
 
@@ -17,6 +16,9 @@ Rails.application.routes.draw do
   resources :posts do
     resources :users
     resources :comments
+    member do
+      put "like" => "posts#vote"
+    end
   end
 
   resources :comments
@@ -28,7 +30,7 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy] do
     resources :users
   end
-  
+
   get "/current_user_skills", to: "users#current_user_skills"
   root to: "posts#index"
   get 'public/index'
