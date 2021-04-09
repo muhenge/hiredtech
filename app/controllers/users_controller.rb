@@ -14,6 +14,18 @@ class UsersController < ApplicationController
         @curr_skills = current_user.skills
         @skill = Skill.new
     end
+
+    def following
+        @title = "Following"
+        @user = User.find(params[:id])
+        render 'following'
+    end
+
+    def followers
+        @title = "Followers"
+        @user = User.find(params[:id])
+        render 'followers'
+    end
     
     
     private
@@ -22,7 +34,6 @@ class UsersController < ApplicationController
         params.require(:user).permit(:firstname, :lastname, :email, :username, :about, :bio, :career_id, skills:[])
     end
 
-    private
 
     def set_user
         @user = User.find(params[:id])

@@ -24,9 +24,11 @@
                 </div>
 
                 <div class="profile-message-btn center-block text-center">
-                    <a href="#" class="btn btn-success">
-                        <i class="fa fa-envelope"></i> Connect
-                    </a>
+                     <% if current_user && current_user.following?(@user) %>
+                        <%= render 'unfollow' %>
+                        <% else %>
+                        <%= render 'follow' %>
+                    <% end %>
                 </div>
             </div>
         </div>
