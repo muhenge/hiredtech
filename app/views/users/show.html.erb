@@ -80,16 +80,28 @@
                     </div>
                 </div>
                 <ul class="nav nav-tabs" role="tablist">
-    <li class="nav-item" role="presentation"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Tab 1</a></li>
+    <li class="nav-item" role="presentation"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Recent Activites</a></li>
     <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">Tab 2</a></li>
     <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3">Tab 3</a></li>
 </ul>
 <div class="tab-content">
     <div class="tab-pane active" role="tabpanel" id="tab-1">
-        <p class="p-3">Content for tab 1.</p>
+        <p class="p-3">
+        <% @user_posts.each do |posts| %>
+            <%= link_to posts.content, user_post_path(@user, posts) %>
+        <%end%>
+        </p>
     </div>
     <div class="tab-pane" role="tabpanel" id="tab-2">
-        <p class="p-3">Content for tab 2.</p>
+        <p class="p-3">
+            <% if @user.followers.empty? %>
+              No connection
+            <% else %>
+                <% @user.followers.each do |followers| %>
+                    <%= link_to followers.username.capitalize, relationship_user_path(@user.followers, followers) %>
+                <%end%>
+            <% end %>
+        </p>
     </div>
     <div class="tab-pane" role="tabpanel" id="tab-3">
         <p class="p-3">Content for tab 3.</p>
