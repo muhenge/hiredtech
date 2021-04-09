@@ -41,7 +41,11 @@
                <% @posts.each do |post| %>
                 
                <div class="post">
-                <%= link_to post.user.username.capitalize, post_user_path(post, post.user) %>
+               <%= link_to post_user_path(post, post.user), :action => 'go' do %>
+                <%= image_tag user_avatar(post.user), class:"border rounded-circle img-profile"%>
+                <%= post.user.username.capitalize %>
+               <%end%>
+                
                 <hr>
                 <%= image_tag(post.image, :class => "img-fluid", alt: "user image") if post.image.attached? %><br>
                     <p class="lead">
