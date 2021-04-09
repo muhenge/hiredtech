@@ -1316,7 +1316,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  acts_as_votable (~> 0.12.1)
+  acts_as_votable
   aws-sdk (~> 3.0, >= 3.0.1)
   bootsnap (>= 1.4.4)
   byebug

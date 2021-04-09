@@ -25,7 +25,7 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
 gem 'devise'
-gem 'acts_as_votable', '~> 0.12.1'
+gem 'acts_as_votable'
 gem 'aws-sdk', '~> 3.0', '>= 3.0.1', require: false 
 gem 'omniauth'
 gem 'omniauth-facebook'

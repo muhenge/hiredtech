@@ -4,6 +4,7 @@
         <div class="col-lg-3 col-md-4 col-sm-4">
             <div class="main-box clearfix">
                 <h2> <%= @user.username %> </h2>
+                
                 <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="profile-img img-responsive center-block">
                 <div class="profile-label">
                     <span class="label label-danger"><strong><%= @user.career.field%></strong></span>
@@ -22,21 +23,32 @@
                         <%end%>
                     </ul>
                 </div>
-
-                <div class="profile-message-btn center-block text-center">
+                <% if @user == current_user %>
+                  
+                <% else %>
+                    <div class="profile-message-btn center-block text-center">
                      <% if current_user && current_user.following?(@user) %>
                         <%= render 'unfollow' %>
                         <% else %>
                         <%= render 'follow' %>
                     <% end %>
                 </div>
+                <% end %>
+              
             </div>
         </div>
 
         <div class="col-lg-9 col-md-8 col-sm-8">
             <div class="main-box clearfix">
                 <div class="profile-header">
-                    <h3><span>User info</span></h3>
+                <% if @user == current_user %>
+                  <h3><span>User info</span></h3>
+                   
+                    <%= link_to  "Edit profile", edit_user_registration_path, class:"btn btn-primary edit-profile" %>
+                <% else %>
+                   <h3><span>User info</span></h3>
+                <% end %>
+                   
                     
                 </div>
 
