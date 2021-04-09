@@ -17,7 +17,7 @@
       </div>
       <div class="modal-body">
         <%= form_for Post.new, :url => posts_path(), :method => :post do |f| %>
-    <%= f.text_area :content, placeholder: "Post here", class:"w-100 text",cols: 30, rows: 15 %>
+    <%= f.rich_text_area :content, placeholder: "Post here", class:"w-100 text",cols: 60, rows: 15 %>
     <%= f.label :field, "Tag to" %>
   <%= f.collection_select(:career_id, Career.all, :id, :field, :prompt => 'Select your title', class:"form-select w-100") %>   
   
@@ -43,9 +43,9 @@
                <div class="post">
                 <%= link_to post.user.username.capitalize, post_user_path(post, post.user) %>
                 <hr>
+                <%= image_tag(post.image, :class => "img-fluid", alt: "user image") if post.image.attached? %><br>
                     <p class="lead">
                         <%= link_to simple_format(post.content.capitalize.truncate(200)), post_path(post) %>
-                       
                     </p>
                   <hr>
                   

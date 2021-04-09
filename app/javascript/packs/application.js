@@ -13,8 +13,11 @@ import "../css/custom"
 import "@fortawesome/fontawesome-free/css/all"
 
 import "jquery"
-import "jquery-ujs"
+//import "jquery-ujs"
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+require("trix")
+require("@rails/actiontext")

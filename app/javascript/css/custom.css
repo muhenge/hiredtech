@@ -23,6 +23,16 @@ body {
   top: 5%;
 }
 
+.img-profile {
+  height: 2rem;
+  width: 2rem;
+}
+
+.img-upload {
+  position: sticky;
+  top: 5%;
+}
+
 /* .file  {
     position: relative;
     overflow: hidden;
