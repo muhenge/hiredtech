@@ -1,4 +1,4 @@
-<%= @post.content %>
+<%= simple_format(@post.content) %>
                      <div class="col-md-12 d-flex justify-content-center">
     <button type="button" class="comment-btn w-50" data-toggle="modal" data-target="#comment">
                     Comment
@@ -19,6 +19,7 @@
       <div class="modal-footer">
         
         <%= f.submit "Comment",class:"btn btn-primary post-btn" %>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <%end%>
       </div>
     </div>

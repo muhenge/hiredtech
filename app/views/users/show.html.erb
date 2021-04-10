@@ -3,9 +3,14 @@
     <div class="row" id="user-profile">
         <div class="col-lg-3 col-md-4 col-sm-4">
             <div class="main-box clearfix">
-                <h2> <%= @user.username %> </h2>
+                <h2> <%= @user.username.capitalize %> </h2>
                 
-                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="profile-img img-responsive center-block">
+                <% if @user == current_user %>
+                    <%= image_tag user_avatar(current_user), class:"profile-img img-responsive center-block"%>
+                <% else %>
+                  <%= image_tag user_avatar(@user), class:"profile-img img-responsive center-block"%>
+                <% end %>
+                
                 <div class="profile-label">
                     <span class="label label-danger"><strong><%= @user.career.field%></strong></span>
                 </div>
@@ -23,6 +28,14 @@
                         <%end%>
                     </ul>
                 </div>
+                
+                <% if @user == current_user %>
+                     <%= form_with model: [@skill], local: true do |f| %>
+      <%= f.text_field :name, placeholder:"Add new skills" %><%= f.number_field :level, placeholder:"Add skill level" %>
+      <%= f.submit "Add skills", class:"btn-success"%>
+    <%end%><br>
+                <% end %>
+                
                 <% if @user == current_user %>
                   
                 <% else %>
@@ -80,7 +93,7 @@
                     </div>
                 </div>
                 <ul class="nav nav-tabs" role="tablist">
-    <li class="nav-item" role="presentation"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Recent Activites</a></li>
+    <li class="nav-item" role="presentation"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Posts</a></li>
     <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">Connections</a></li>
     <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3">Connected to</a></li>
 </ul>
@@ -88,7 +101,7 @@
     <div class="tab-pane active" role="tabpanel" id="tab-1">
         <p class="p-3">
         <% @user_posts.each do |posts| %>
-            <%= link_to posts.content, user_post_path(@user, posts) %>
+            <%= link_to simple_format(posts.content), user_post_path(@user, posts) %>
         <%end%>
         </p>
     </div>
@@ -108,7 +121,7 @@
               No connection
             <% else %>
                 <% @user.following.each do |followed| %>
-                    <%= link_to followed.username.capitalize, relationship_user_path(@user.following, following) %>
+                    <%= link_to followed.username.capitalize, relationship_user_path(@user.following, followed) %>
                 <%end%>
             <% end %></p>
     </div>

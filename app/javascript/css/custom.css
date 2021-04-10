@@ -23,7 +23,7 @@ body {
   top: 5%;
 }
 
-.img-profile {
+img.img-profile {
   height: 2rem;
   width: 2rem;
 }
@@ -31,6 +31,12 @@ body {
 .img-upload {
   position: sticky;
   top: 5%;
+}
+
+.post .post-content img {
+  width: 100% !important;
+  height: 400px !important;
+  object-fit: contain !important;
 }
 
 /* .file  {

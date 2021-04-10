@@ -11,7 +11,7 @@ import "bootstrap"
 import "../css/application"
 import "../css/custom"
 import "@fortawesome/fontawesome-free/css/all"
-
+import "../trix-editor-overrides"
 import "jquery"
 //import "jquery-ujs"
 
