@@ -61,10 +61,7 @@
                 <% else %>
                    <h3><span>User info</span></h3>
                 <% end %>
-                   
-                    
                 </div>
-
                 <div class="row profile-user-info">
                     <div class="col-sm-8">
                         <div class="profile-user-details clearfix">
@@ -101,7 +98,8 @@
     <div class="tab-pane active" role="tabpanel" id="tab-1">
         <p class="p-3">
         <% @user_posts.each do |posts| %>
-            <%= link_to simple_format(posts.content), user_post_path(@user, posts) %>
+            <%= link_to simple_format(posts.content.capitalize.truncate(50)), user_post_path(@user, posts) %>
+            <hr>
         <%end%>
         </p>
     </div>
@@ -109,9 +107,14 @@
         <p class="p-3">
             <% if @user.followers.empty? %>
               No connection
-            <% else %>
+            <%else%>
                 <% @user.followers.each do |followers| %>
-                    <%= link_to followers.username.capitalize, relationship_user_path(@user.followers, followers) %>
+                <div class="d-inline">
+                    <%= link_to  relationship_user_path(@user.followers, followers), :action => 'go' do %>
+                        <%= image_tag user_avatar(followers), class:"border rounded-circle img-profile"%>
+                    <%end%>
+                    
+                </div>
                 <%end%>
             <% end %>
         </p>
@@ -121,17 +124,20 @@
               No connection
             <% else %>
                 <% @user.following.each do |followed| %>
-                    <%= link_to followed.username.capitalize, relationship_user_path(@user.following, followed) %>
+                <div class="d-inline">
+                 <%= link_to  relationship_user_path(@user.following, followed), :action => 'go' do %>
+                    <%= image_tag user_avatar(followed), class:"border rounded-circle img-profile"%>
+                 <%end%>
+                    
+                </div>
                 <%end%>
             <% end %></p>
     </div>
 </div>
-               
-            </div>
+       </div>
         </div>
     </div>
 </div>
-
 
 
 

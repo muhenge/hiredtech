@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'careers/show'
+  get 'careers/post_by_career'
   get 'comments/create'
   resources :skills
   devise_for :user
@@ -16,6 +18,8 @@ Rails.application.routes.draw do
   resources :posts do
     resources :users
     resources :comments
+    resources :careers
+    resources :relationships
     member do
       put "like" => "posts#vote"
     end
@@ -29,6 +33,7 @@ Rails.application.routes.draw do
 
   resources :relationships, only: [:create, :destroy] do
     resources :users
+    resources :posts
   end
 
   get "/current_user_skills", to: "users#current_user_skills"

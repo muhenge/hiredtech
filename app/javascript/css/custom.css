@@ -33,6 +33,10 @@ img.img-profile {
   top: 5%;
 }
 
+.post-content {
+  color: black;
+}
+
 .post .post-content img {
   width: 100% !important;
   height: 400px !important;
@@ -897,9 +901,24 @@ textarea.form-control {
 
 .post {
   padding: 12px;
-  border: 1px solid rgba(187,187,187,0.8);
   margin-top: 12px;
   border-radius: 9px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  background-color:#ffffff;
+}
+
+.post:hover {
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+
+a.post-text {
+  color: black;
+}
+
+.post a {
+  color: #2aa493 !important;
 }
 
 .comment-btn {
@@ -908,4 +927,8 @@ textarea.form-control {
   border-radius: 15px;
   padding: 5px 0 5px 0;
   font-size: larger;
+}
+
+.post-in-user {
+  border-bottom: rgba(0,0,0,0.75);
 }

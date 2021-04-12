@@ -17,13 +17,11 @@ class UsersController < ApplicationController
     end
 
     def following
-        @title = "Following"
         @user = User.find(params[:id])
         render 'following'
     end
 
     def followers
-        @title = "Followers"
         @user = User.find(params[:id])
         render 'followers'
     end

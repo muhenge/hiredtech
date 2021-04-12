@@ -21,7 +21,7 @@ class RelationshipsController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:firstname, :lastname, :email, :username, :about, :bio, :career_id, skills:[])
+        params.require(:user).permit(:firstname,:avatar, :lastname, :email, :username, :about, :bio, :career_id, skills:[])
     end
 
 

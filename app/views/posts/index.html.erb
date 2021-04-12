@@ -37,7 +37,7 @@
         <div class="col-md-2 bg-success h-100"></div>
         <div class="col-md-8 mt-5 d-flex justify-content-center">
             <div class="posts">
-           
+              
                <% @posts.each do |post| %>
                 
                <div class="post">
@@ -48,7 +48,7 @@
                 
                 <hr> 
                 <div class="post-content">
-                        <%= simple_format(post.content) %>
+                        <%= link_to simple_format(post.content), post_path(post) %>
                   </div>
                   <hr>
                   
