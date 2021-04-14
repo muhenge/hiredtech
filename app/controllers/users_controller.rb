@@ -25,6 +25,7 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         render 'followers'
     end
+
     
     
     private

@@ -1,3 +1,5 @@
+<%= @userr %>
+
 <div class="container">
     <div class="row">
         <div class="col-md-12 d-flex justify-content-center">
@@ -48,7 +50,12 @@
                 
                 <hr> 
                 <div class="post-content">
-                        <%= link_to simple_format(post.content), post_path(post) %>
+                <% current_user.following.each do |followed| %>
+                    <% followed.posts.each do |post| %>
+                    <%= link_to simple_format(post.content), post_path(post) %>
+                  <% end %>
+                <% end %>
+                        
                   </div>
                   <hr>
                   
@@ -64,3 +71,4 @@
         <div class="col-md-2 bg-warning h-100"></div>
     </div>
 </div>
+<%= @u %>

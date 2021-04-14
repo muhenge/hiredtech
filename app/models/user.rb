@@ -29,6 +29,12 @@ class User < ApplicationRecord
     following.include?(user)
   end
 
+  def self.user_following_posts
+    user.following.each do |u|
+      u.posts
+    end
+  end
+
   def self.find_first_by_auth_conditions(warden_conditions)
     condition = warden_conditions.dup
     if login = condition.delete(:login)
