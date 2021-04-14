@@ -3,6 +3,7 @@ class PostsController < ApplicationController
     before_action :authenticate_user!, only: [:index, :create, :edit, :update, :show, :destory, :vote]
     def index
         @posts = Post.most_recent
+        @current_user_career = current_user.career
     end
 
     def show
