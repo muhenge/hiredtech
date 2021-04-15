@@ -14,27 +14,6 @@
                 <div class="profile-label">
                     <span class="label label-danger"><strong><%= @user.career.field%></strong></span>
                 </div>
-
-                <div class="profile-details">
-                    <h4></h4>
-                    <% if @user.skills.empty? %>
-                      <span class="text-secondary">No skills registered<span>
-                    <% else %>
-                      
-                    <% end %>
-                    <ul class="fa-ul">
-                        <%@user_skills.each do |skills|%>
-                          <li><%= skills.name %><%= skills.level %></li>
-                        <%end%>
-                    </ul>
-                </div>
-                
-                <% if @user == current_user %>
-                     <%= form_with model: [@skill], local: true do |f| %>
-      <%= f.text_field :name, placeholder:"Add new skills" %><%= f.number_field :level, placeholder:"Add skill level" %>
-      <%= f.submit "Add skills", class:"btn-success"%>
-    <%end%><br>
-                <% end %>
                 
                 <% if @user == current_user %>
                   
@@ -84,11 +63,37 @@
                     </div>
                     <div class="col-sm-4 profile-social">
                         <ul class="fa-ul">
-                            <li><strong>email: </strong> <%= mail_to "#{@user.email}"%> </li>
+                            <><strong>email: </strong> <%= mail_to "#{@user.email}"%> </>
                             
                         </ul>
                     </div>
+                    
                 </div>
+                <div class="profile-details">
+                    <h4></h4>
+                    <% if @user.skills.empty? %>
+                      <span class="text-secondary">No skills registered<span>
+                    <% else %>
+                      
+                    <% end %>
+                    <div class="fa-ul">
+                        <%@user_skills.each do |skills|%>
+                      <%= skills.name %>
+                      
+
+<div class="progress">
+  <div class="progress-bar" role="progressbar" style="width: <%= skills.level.to_i %>;" aria-valuenow="<%= skills.level.to_i %>" ><%= skills.level.to_i %></div>
+</div>
+                        <%end%>
+                    </div>
+                </div>
+                
+                <% if @user == current_user %>
+                     <%= form_with model: [@skill], local: true do |f| %>
+      <%= f.text_field :name, placeholder:"Add new skills" %><%= f.number_field :level, placeholder:"Add skill level", min: 0, max: 100,step: 5 %>
+      <%= f.submit "Add skills", class:"btn-success"%>
+    <%end%><br>
+                <% end %>
                 <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item" role="presentation"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Posts</a></li>
     <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">Connections</a></li>
