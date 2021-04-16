@@ -903,7 +903,6 @@ textarea.form-control {
   padding: 12px;
   margin-top: 12px;
   border-radius: 9px;
-  border: 3px solid rgba(0, 0, 0, 0.1);
   background-color:#ffffff;
 }
 
@@ -917,9 +916,9 @@ a.post-text {
   color: black;
 }
 
-.post a {
+/* .post a {
   color: #2aa493 !important;
-}
+} */
 
 .comment-btn {
   border: 1px solid rgba(0, 0, 0, 0.1);

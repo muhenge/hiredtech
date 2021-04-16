@@ -63,7 +63,7 @@
                     </div>
                     <div class="col-sm-4 profile-social">
                         <ul class="fa-ul">
-                            <><strong>email: </strong> <%= mail_to "#{@user.email}"%> </>
+                        <strong>email: </strong> <%= mail_to "#{@user.email}"%>
                             
                         </ul>
                     </div>
@@ -81,10 +81,10 @@
                       <%= skills.name %>
                       
 
-<div class="progress">
-  <div class="progress-bar" role="progressbar" style="width: <%= skills.level.to_i %>;" aria-valuenow="<%= skills.level.to_i %>" ><%= skills.level.to_i %></div>
-</div>
-                        <%end%>
+                <div class="progress">
+                     <div class="progress-bar" role="progressbar" style="width: <%= skills.level %>%;" aria-valuenow="<%= skills.level %>" aria-valuemin="0" aria-valuemax="100"><%= skills.level %>%</div>
+                </div>
+                <%end%>
                     </div>
                 </div>
                 

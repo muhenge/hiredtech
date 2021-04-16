@@ -45,7 +45,8 @@
                 <%= link_to "Visit by #{@current_user_career.field} career posts", post_by_career_path %>
                 </div>
 
-               <% @posts.each do |post| %>
+                <% current_user.following.each do |followed| %>
+                    <% followed.posts.each do |post| %>
                 
                <div class="post">
                <%= link_to post_user_path(post, post.user), :action => 'go' do %>
@@ -55,11 +56,9 @@
                 
                 <hr> 
                 <div class="post-content">
-                <% current_user.following.each do |followed| %>
-                    <% followed.posts.each do |post| %>
+              
                     <%= link_to simple_format(post.content), post_path(post) %>
-                  <% end %>
-                <% end %>
+                
                         
                   </div>
                   <hr>
@@ -70,10 +69,10 @@
                         <% end %>
                  
               </div>
-            <%end%>
+                <% end %>
+                <% end %>
             </div>
         </div>
         <div class="col-md-2 bg-warning h-100"></div>
     </div>
 </div>
-<%= @u %>
