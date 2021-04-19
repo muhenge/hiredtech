@@ -98,10 +98,15 @@
                       
 
                 <div class="progress">
-                     <div class="progress-bar" role="progressbar" style="width: <%= skills.level %>%;" aria-valuenow="<%= skills.level %>" aria-valuemin="0" aria-valuemax="100"><%= skills.level %>%</div>
+                     <div class="progress-bar bg-success" role="progressbar" style="width: <%= skills.level %>%;" aria-valuenow="<%= skills.level %>" aria-valuemin="0" aria-valuemax="100"><%= skills.level %>%</div>
                 </div>
-                <%= link_to  "Edit", edit_user_skill_path(current_user, skills) %>
-                <%= link_to 'Delete', skills , method: :delete, class: 'btn btn-outline-danger' %>
+                
+                <% if @user == current_user %>
+                    <%= link_to  "Edit", edit_user_skill_path(current_user, skills),class:"text-succes" %> <span class="divider"></span>
+                <%= link_to 'Delete', skills , method: :delete, class:"text-danger" %>
+                <% end %>
+                
+                
                 <br>
                 </div>
                 <%end%>
@@ -110,8 +115,22 @@
                 
     
                 <ul class="nav nav-tabs" role="tablist">
-    <li class="nav-item" role="presentation"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Posts</a></li>
-    <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">Connections</a></li>
+    <li class="nav-item" role="presentation"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">
+    <% if @user == current_user %>
+      My posts
+    <% else %>
+       <%= @user.username.capitalize %> posts
+    <% end %>
+    
+    </a></li>
+    <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">
+    <% if @user == current_user %>
+      People connected
+    <% else %>
+      
+    <% end %>
+    
+    </a></li>
     <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3">Connected to</a></li>
 </ul>
 <div class="tab-content">

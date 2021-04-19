@@ -23,37 +23,27 @@ class SkillsController < ApplicationController
   # POST /skills or /skills.json
   def create
     @skill = current_user.skills.build(skill_params)
-    respond_to do |format|
+    
       if @skill.save
-        format.html { redirect_to current_user_skills_path, notice: "Skill was successfully created." }
-        format.json { render :show, status: :created, location: @skill }
+        redirect_to user_path(current_user), notice:"Skill added"
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @skill.errors, status: :unprocessable_entity }
+       redirect_to user_path(current_user), notice:"Failed"
       end
-    end
   end
 
   # PATCH/PUT /skills/1 or /skills/1.json
   def update
-    respond_to do |format|
       if @skill.update(skill_params)
-        format.html { redirect_to @skill, notice: "Skill was successfully updated." }
-        format.json { render :show, status: :ok, location: @skill }
+        redirect_to user_path(current_user), notice:"Skill updated"
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @skill.errors, status: :unprocessable_entity }
+        redirect_to user_path(current_user), notice:"Failed"
       end
-    end
   end
 
   # DELETE /skills/1 or /skills/1.json
   def destroy
     @skill.destroy
-    respond_to do |format|
-      format.html { redirect_to user_url(@user), notice: "Skill was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to user_path(current_user), notice:"#{current_user.skills.name} deleted"
   end
 
   private
