@@ -76,22 +76,26 @@
                     <% else %>
                       
                     <% end %>
-                    <div class="fa-ul">
+                    
                         <%@user_skills.each do |skills|%>
+                            <div class="fa-ul border-bottom mb-2 p-2">
                       <%= skills.name %>
                       
 
                 <div class="progress">
                      <div class="progress-bar" role="progressbar" style="width: <%= skills.level %>%;" aria-valuenow="<%= skills.level %>" aria-valuemin="0" aria-valuemax="100"><%= skills.level %>%</div>
                 </div>
+                <%= link_to  "Edit", edit_user_skill_path(current_user, skills) %>
+                <br>
+                </div>
                 <%end%>
-                    </div>
+                    
                 </div>
                 
-                <% if @user == current_user %>
-                     <%= form_with model: [@skill], local: true do |f| %>
-      <%= f.text_field :name, placeholder:"Add new skills" %><%= f.number_field :level, placeholder:"Add skill level", min: 0, max: 100,step: 5 %>
-      <%= f.submit "Add skills", class:"btn-success"%>
+    <% if @user == current_user %>
+        <%= form_with model: [@skill], local: true do |f| %>
+        <%= f.text_field :name, placeholder:"Add new skills" %><%= f.number_field :level, placeholder:"Add skill level", min: 0, max: 100,step: 5 %>
+        <%= f.submit "Add skills", class:"btn-success"%>
     <%end%><br>
                 <% end %>
                 <ul class="nav nav-tabs" role="tablist">

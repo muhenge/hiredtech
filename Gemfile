@@ -26,6 +26,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'mini_magick'
 gem 'poppler', '~> 3.0', '>= 3.0.7'
 gem 'image_processing', '~> 1.2'
+gem 'link_thumbnailer'
 gem 'devise'
 gem 'acts_as_votable'
 gem 'aws-sdk', '~> 3.0', '>= 3.0.1', require: false 

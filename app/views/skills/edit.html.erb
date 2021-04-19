@@ -1,6 +1,7 @@
 <h1>Editing Skill</h1>
 
-<%= render 'form', skill: @skill %>
-
-<%= link_to 'Show', @skill %> |
-<%= link_to 'Back', skills_path %>
+ <%= form_for @skill do |f| %>
+    <%= f.text_field :name, placeholder:"Add new skills" %>
+    <%= f.number_field :level, placeholder:"Add skill level", min: 0, max: 100,step: 5 %>
+    <%= f.submit "Edit", class:"btn-success"%>
+<%end%>

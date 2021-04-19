@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   get 'careers/show'
   get 'careers/post_by_career'
   get 'comments/create'
-  resources :skills
+  resources :skills do
+    resources :users
+  end
   devise_for :user
     # get '/users/sign_out' => ' devise/sessions#destroy'
 
@@ -29,6 +31,7 @@ Rails.application.routes.draw do
   
   resources :users, only: %i[show index] do
     resources :posts
+    resources :skills
   end
 
   resources :relationships, only: [:create, :destroy] do

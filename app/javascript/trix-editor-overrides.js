@@ -8,7 +8,7 @@
     const acceptedTypes = ['image/jpeg', 'image/png', 'image/gif','image/svg','image/pdf','image/jpg','image/webp', 'document/pdf', 'image/']
     if (!acceptedTypes.includes(event.file.type)) {
       event.preventDefault()
-      alert("Only support attachment of jpeg or png files")
+      alert("unsupported file")
     }
   })
 
