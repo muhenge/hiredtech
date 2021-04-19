@@ -10,7 +10,7 @@ class PostsController < ApplicationController
         @comment = Comment.new
         # @comment = Comment.new
         # @post_user = @post.user
-        @comments = @post.comments
+        @comments = @post.comments.most_recent
     end
 
     def new

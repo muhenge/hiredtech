@@ -27,7 +27,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :comments
+  resources :comments do
+    resources :users
+  end
   
   resources :users, only: %i[show index] do
     resources :posts
