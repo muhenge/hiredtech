@@ -119,7 +119,7 @@
     <% if @user == current_user %>
       My posts
     <% else %>
-       <%= @user.username.capitalize %> posts
+       <%= @user.username.capitalize %>'s posts
     <% end %>
     
     </a></li>
@@ -127,11 +127,15 @@
     <% if @user == current_user %>
       People connected
     <% else %>
-      
+      Connected to <%= @user.username.capitalize %>
     <% end %>
     
     </a></li>
-    <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3">Connected to</a></li>
+    <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3"><% if @user == current_user %>
+      Connected to
+    <% else %>
+     <%= @user.username.capitalize %> connections
+    <% end %></a></li>
 </ul>
 <div class="tab-content">
     <div class="tab-pane active" role="tabpanel" id="tab-1">
