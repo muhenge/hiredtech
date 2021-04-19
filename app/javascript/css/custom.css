@@ -602,9 +602,11 @@ a:focus {
   font-size: 0.75em;
   text-align: center;
 }
-.fa-ul {
-  
+.left {
+  position: sticky !important;
+  top: 5% !important;
 }
+
 .table tbody tr td .first-line {
   line-height: 1.5;
   font-weight: 400;
