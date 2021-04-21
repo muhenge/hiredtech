@@ -8,12 +8,16 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "bootstrap"
+import "bootstrap-select"
 import "../css/application"
 import "../css/custom"
 import "@fortawesome/fontawesome-free/css/all"
 import "../trix-editor-overrides"
 import "jquery"
 //import "jquery-ujs"
+
+$('.my-select').selectpicker();
+
 
 Rails.start()
 Turbolinks.start()

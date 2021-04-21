@@ -20,13 +20,12 @@
         <%= form_for Post.new, :url => posts_path(), :method => :post do |f| %>
     <%= f.rich_text_area :content, placeholder: "Post here", class:"w-100 text",cols: 60, rows: 15 %>
     <%= f.label :field, "Tag to" %>
-  <%= f.collection_select(:career_id, Career.all, :id, :field, :prompt => 'Select your title', class:"form-select w-100") %>   
-  
+       <%= select_tag 'career_ids', options_for_select(Career.all.collect{ |u| [u.field, u.id] }), class:"selectpicker w-100", multiple: true, data: { live_search: 'true' }%>
+
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary"><%= f.submit "Post",class:"btn post-btn" %></button>
+        <%= f.submit "Post",class:"btn btn-primary" %>
         <%end%>
       </div>
     </div>
