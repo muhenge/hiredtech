@@ -21,9 +21,8 @@
     <%= f.rich_text_area :content, placeholder: "Post here", class:"w-100 text",cols: 60, rows: 15 %>
     <%= f.label :field, "Tag to" %>
        <%= select_tag 'career_ids', options_for_select(Career.all.collect{ |u| [u.field, u.id] }), class:"selectpicker w-100", multiple: true, data: { live_search: 'true' }%>
-
-
-      </div>
+        <%= select_tag 'skill_ids', options_for_select(Skill.all.collect{ |u| [u.name, u.id] }), class:"selectpicker w-100", multiple: true, data: { live_search: 'true' }%>
+      </div><br>
       <div class="modal-footer">
         <%= f.submit "Post",class:"btn btn-primary" %>
         <%end%>

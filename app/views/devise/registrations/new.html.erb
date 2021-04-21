@@ -15,7 +15,7 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder:"email" %>
   </div><br>
     <div class="field">
-       <%= select_tag 'career_id', options_for_select(Career.all.collect{ |u| [u.field, u.id] }), class:"selectpicker w-100", data: { live_search: 'true' }%>
+       <%= f.select 'career_id', options_for_select(Career.all.collect{ |u| [u.field, u.id] }), class:"selectpicker w-100", data: { live_search: 'true' }%>
   </div><br>
    <div class="field">
    
