@@ -15,7 +15,7 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder:"email" %>
   </div><br>
     <div class="field">
-  <%= f.collection_select(:career_id, Career.all, :id, :field, :prompt => 'Select your title', class:"form-select") %>
+       <%= select_tag 'career_id', options_for_select(Career.all.collect{ |u| [u.field, u.id] }), class:"selectpicker w-100", data: { live_search: 'true' }%>
   </div><br>
    <div class="field">
    
