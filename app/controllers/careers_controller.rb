@@ -6,8 +6,6 @@ class CareersController < ApplicationController
     @posts = current_user.career.posts
   end
 
-  # def show
-  #   @interest_post = @interest.posts
-  # end
+  
 
 end

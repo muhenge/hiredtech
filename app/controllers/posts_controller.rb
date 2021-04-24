@@ -4,6 +4,7 @@ class PostsController < ApplicationController
     def index
         @posts = Post.most_recent
         @current_user_career = current_user.career
+        @post_career = Career.all.collect{ |u| [ u.field, u.id ] }
     end
 
     def show
@@ -18,10 +19,8 @@ class PostsController < ApplicationController
     end
 
     def create
-
         @post = current_user.posts.build(post_params)
-        
-        if @post.save
+        if  @post.save
             redirect_to posts_path
             flash[:notice] = 'Posted'
         else
@@ -45,7 +44,7 @@ class PostsController < ApplicationController
     private
 
     def post_params
-        params.require(:post).permit(:content, :career_id,:comment_id,:image,:user_id, :created_at)
+        params.require(:post).permit(:content,:comment_id,:image,:user_id, :created_at, :career_id ,:skill_id)
     end
 
     private

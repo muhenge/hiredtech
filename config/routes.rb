@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     resources :comments
     resources :careers
     resources :relationships
+    resources :skills
     member do
       put "like" => "posts#vote"
     end
