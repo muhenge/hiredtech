@@ -17,7 +17,6 @@
     <div class="field">
        <%= f.select 'career_id', options_for_select(Career.all.collect{ |u| [u.field, u.id] }), class:"selectpicker w-100", data: { live_search: 'true' }%>
   </div><br>
-   <div class="field">
    
   <div class="field">
     <% if @minimum_password_length %>
@@ -31,9 +30,11 @@
   </div><br>
 
   <div class="actions">
-    <%= f.submit "Sign up",class:"my-btn" %>
+    <%= f.submit "Sign up",class:"my-btn" %><br><br>
+    <%= link_to  "You already have an account? Login here.", new_user_session_path, class:"text-secondary align-center d-flex justify-content-center" %>
+
   </div>
+</div>
+
 <% end %><br>
-
-<%= link_to  "You already have an account? Login here.", new_user_session_path, class:"text-secondary align-center d-flex justify-content-center" %>
-
+</section>
