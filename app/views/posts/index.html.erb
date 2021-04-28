@@ -19,10 +19,9 @@
       <div class="modal-body">
         <%= form_for Post.new, :url => posts_path(), :method => :post do |f| %>
     <%= f.rich_text_area :content, placeholder: "Post here", class:"w-100 text",cols: 60, rows: 15 %>
-    <%= f.label :field, "Tag to" %>
 
-      <%= f.select :career_id, options_for_select(Career.all.collect{ |u| [ u.field, u.id ] }),class:"selectpicker w-100", multiple: true, data: { live_search: 'true' } %>
-        <%= f.select :skill_id, options_for_select(Skill.all.collect{ |u| [u.name, u.id] }), class:"selectpicker w-100", multiple: true, data: { live_search: 'true' }%>
+      <%= f.select :career_id, options_for_select(Career.all.collect{ |u| [ u.field, u.id ] }), {prompt:"Select a career to target"}, {class: "form-control selectpicker", data: {"live-search": true}}%><br><br>
+        <%= f.select :skill_id, options_for_select(Skill.all.collect{ |u| [u.name, u.id] }), {prompt:"Select a skill to target"}, {class: "form-control selectpicker", data: {"live-search": true}}%>
       </div><br>
       <div class="modal-footer">
         <%= f.submit "Post",class:"btn btn-primary" %>

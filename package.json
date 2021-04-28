@@ -11,6 +11,7 @@
     "bootstrap": "^4.6.0",
     "bootstrap-select": "^1.13.18",
     "jquery": "^3.6.0",
+    "lottie-web": "^5.7.8",
     "popper.js": "^1.16.1",
     "trix": "^1.2.0",
     "turbolinks": "^5.2.0"
