@@ -1,6 +1,6 @@
 class Skill < ApplicationRecord
     belongs_to :user
-    has_many :posts
+    belongs_to :post
     validates :level,presence: true
     validates :name, presence: true
 end
