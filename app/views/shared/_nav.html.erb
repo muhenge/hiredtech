@@ -1,5 +1,5 @@
 <nav class="navbar navbar-light navbar-expand-md navigation-clean-button border-bottom shadow-sm bg-light">
-    <div class="container"><a class="navbar-brand" href="#">Company Name</a><button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+    <div class="container"> <%= link_to "Hiredev", root_path, class:"navbar-brand"  %><button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="nav navbar-nav mr-auto">
                 <li class="nav-item"></li>
@@ -10,8 +10,9 @@
                 <li class="nav-item dropdown no-arrow">
                     <div class="nav-item dropdown no-arrow"><a data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle nav-link" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small"><%= image_tag user_avatar(current_user), class:"border rounded-circle img-profile"%><%= current_user.username.capitalize%></span></a>
                         <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in">
-                            <%= link_to  "Posts", posts_path, class:"dropdown-item" %>
-                            <%= link_to  "Your profile / settings", user_path(current_user), class:"dropdown-item" %>
+                            <%= link_to  "Home", posts_path, class:"dropdown-item" %>
+                            <%= link_to  "Find devs", users_path, class:"dropdown-item" %>
+                            <%= link_to  "Your profile | settings", user_path(current_user), class:"dropdown-item" %>
                             <div class="dropdown-divider"></div>
                             <%= link_to "Logout", destroy_user_session_path, method: :delete, class:"dropdown-item"%>
                         </div>

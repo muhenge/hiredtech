@@ -1,4 +1,5 @@
 
+
 <div class="container">
     <div class="row">
         <div class="col-md-12 d-flex justify-content-center">
@@ -19,7 +20,8 @@
       <div class="modal-body">
         <%= form_for Post.new, :url => posts_path(), :method => :post do |f| %>
     <%= f.rich_text_area :content, placeholder: "Post here", class:"w-100 text",cols: 60, rows: 15 %>
-        <%= f.select :career_id, options_for_select(Career.all.collect{ |u| [ u.field, u.id ] }) {prompt:"Tag to career"},{ :multiple => true }, {class: "form-control selectpicker", data: {"live-search": true}}%><br><br>
+        <%= f.select :career_id, options_for_select(Career.all.collect{ |u| [u.field, u.id] }), {prompt:"Tag to careers"}, {class: "form-control selectpicker", data: {"live-search": true}}%>
+        <br><br>
         <%= f.select :skill_id, options_for_select(Skill.all.collect{ |u| [u.name, u.id] }), {prompt:"Tag to skills"}, {class: "form-control selectpicker", data: {"live-search": true}}%>
     </div><br>
       <div class="modal-footer">
@@ -80,3 +82,4 @@
         <div class="col-md-2 bg-warning h-100"></div>
     </div>
 </div>
+

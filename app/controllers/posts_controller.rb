@@ -4,7 +4,7 @@ class PostsController < ApplicationController
     def index
         @posts = Post.most_recent
         @current_user_career = current_user.career
-        @post_career = Career.all.collect{ |u| [ u.field, u.id ] }
+        
     end
 
     def show
