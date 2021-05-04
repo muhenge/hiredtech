@@ -48,7 +48,7 @@ class User < ApplicationRecord
     if search
       where(["username LIKE ?","%#{search}%"])
     else
-      all
+      all.sort_by {|e| e.username}
     end
   end
   
