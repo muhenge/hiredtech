@@ -2,7 +2,7 @@ class UsersController < ApplicationController
     before_action :set_user, only: %i[show]
     before_action :authenticate_user!, only: %i[:show]
     def index
-        @users = User.all
+         @users = User.search(params[:search])
     end
 
     def show

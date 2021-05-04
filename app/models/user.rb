@@ -43,5 +43,13 @@ class User < ApplicationRecord
       where(condition.to_hash).first
     end
   end
+
+  def self.search(search)
+    if search
+      where(["username LIKE ?","%#{search}%"])
+    else
+      all
+    end
+  end
   
 end
