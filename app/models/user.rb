@@ -46,7 +46,7 @@ class User < ApplicationRecord
 
   def self.search(search)
     if search
-      where(["username LIKE ?","%#{search}%"])
+      where(["username LIKE ? OR firstname LIKE ? OR lastname LIKE ?","%#{search}%", "%#{search}","%#{search}"])
     else
       all.sort_by {|e| e.username}
     end
