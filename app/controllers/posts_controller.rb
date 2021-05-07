@@ -4,13 +4,11 @@ class PostsController < ApplicationController
     def index
         @posts = Post.most_recent
         @current_user_career = current_user.career
-        
     end
 
     def show
         @comment = Comment.new
-        # @comment = Comment.new
-        # @post_user = @post.user
+     
         @comments = @post.comments.most_recent
     end
 
