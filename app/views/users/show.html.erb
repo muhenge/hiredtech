@@ -28,10 +28,12 @@
                 <% end %>
               
             </div>
-            <div class="main-box clearfix">
-            <h4>Add skills here</h4>
+            
+            
             <hr>
-                <% if @user == current_user %>
+            <div class="main-box clearfix">
+    <% if @user == current_user %>
+    <h4>Add skills here</h4>
         <%= form_with model: [@skill], local: true do |f| %>
         <%= f.text_field :name, placeholder:"Add new skills" %><br><br>
         <%= f.number_field :level, placeholder:"Add skill level", min: 0, max: 100 %><br><br>

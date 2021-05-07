@@ -20,10 +20,11 @@
       <div class="modal-body">
         <%= form_for Post.new, :url => posts_path(), :method => :post do |f| %>
     <%= f.rich_text_area :content, placeholder: "Post here", class:"w-100 text",cols: 60, rows: 15 %>
-        <%= f.select :career_id, options_for_select(Career.all.collect{ |u| [u.field, u.id] }), {prompt:"Tag to careers"}, {class: "form-control selectpicker", data: {"live-search": true}}%>
-        <br><br>
-        <%= f.select :skill_id, options_for_select(Skill.all.collect{ |u| [u.name, u.id] }), {prompt:"Tag to skills"}, {class: "form-control selectpicker", data: {"live-search": true}}%>
+         <%= f.select(:career_id, Career.all.collect {|u| [u.field, u.id]}, {:prompt => 'Tag to a career'},{class: "form-control selectpicker",data: {"live-search": true}}) %><br><br>
+        <%= f.select :skill_id, options_for_select(Skill.all.collect{ |u| [u.name, u.id] }), {prompt:"Tag to skill"}, {class: "form-control selectpicker", data: {"live-search": true}}%>
     </div><br>
+     
+
       <div class="modal-footer">
         <%= f.submit "Post",class:"btn btn-primary" %>
         <%end%>

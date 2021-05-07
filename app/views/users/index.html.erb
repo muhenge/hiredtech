@@ -24,11 +24,11 @@
                                 <tr>
                                     <td>
                                         <%= image_tag user_avatar(user), class:"profile-img img-responsive center-block"%>
-                                        <%= link_to user.username, user_path(user), class:"user-link" %>
-                                        <span class="user-subhead"><%= user.firstname %> <%= user.lastname %></span>
+                                        <%= link_to user.username.capitalize, user_path(user), class:"user-link" %>
+                                        <span class="user-subhead"><%= user.firstname.capitalize %> <%= user.lastname.capitalize %></span>
                                     </td>
                                      <td>
-                                        <%= mail_to "#{user.email}" %>
+                                        <%= mail_to "#{user.email.downcase}" %>
                                     </td>
                                     <td><%= user.created_at %></td>
                                 <tr>
