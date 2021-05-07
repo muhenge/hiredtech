@@ -62,10 +62,7 @@
                   <hr>
                   <div class="d-flex flex-row justify-content-around">
                     <div>
-                        <%= link_to like_post_path(post), method: :put do%>
-                                 <i class="fas fa-thumbs-up"></i>
-                                <%= post.get_upvotes.size %><br>
-                           <% end %>
+                        <%= link_to "Read or Comment", post_path(post) %>
                     </div>
                     <div>
                       
