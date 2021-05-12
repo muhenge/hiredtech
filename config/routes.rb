@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   end
 
   get "/current_user_skills", to: "users#current_user_skills"
-  root to: "public#index"
+  root to: "posts#index"
   get 'public/index'
   get "/post_by_career", to: "careers#post_by_career"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
