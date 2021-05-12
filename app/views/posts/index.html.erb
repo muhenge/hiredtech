@@ -54,12 +54,14 @@
                 <hr> 
                 <div class="post-content">
               
-                    <%= link_to simple_format(post.content), post_path(post) %>
+                    <%= simple_format(post.content) %>
                   </div>
                   <hr>
                   <div class="d-flex flex-row">
                     <div>
-                        <%= link_to "Read or Comment", post_path(post), class:"border p-2 shadow rounded" %>
+                        <%= link_to post_path(post), class:"border p-2 shadow rounded", :action => "go" do %>
+                          <i class="fas fa-comments"></i> Read or Comment
+                        <%end%>
                     </div>
                     <div>
                       
