@@ -7,7 +7,7 @@
 				<h3 class="text-success"><%= @post.comments.count %> Comments</h3>
             <div class="col-md-12 d-flex justify-content-center">
     <button type="button" class="comment-btn w-50" data-toggle="modal" data-target="#comment">
-                    Add a comment
+                   <i class="fas fa-comment-dots"></i> Add a comment
     </button>
     <div class="modal fade" id="comment" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -23,8 +23,10 @@
           <%= f.text_area :text, placeholder: "Add your comment", class:"w-100 text",cols: 15, rows: 15 %>
       </div>
       <div class="modal-footer">
+      <%= button_tag( :class => "btn btn-primary w-100") do %>
+            <i class="fas fa-comment-dots"></i> Comment
+        <% end %>
 
-        <%= f.submit "Comment",class:"btn btn-primary post-btn" %>
         <%end%>
       </div>
     </div>

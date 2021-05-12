@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-12 d-flex justify-content-center">
             <button type="button" class="post-btnn w-50" data-toggle="modal" data-target="#exampleModalCenter">
-                    Start a post
+                   <i class="fas fa-comment-alt"></i> Start a post
             </button>
 
 <!-- Modal -->
@@ -26,7 +26,9 @@
      
 
       <div class="modal-footer">
-        <%= f.submit "Post",class:"btn btn-primary" %>
+        <%= button_tag( :class => "btn btn-primary w-100") do %>
+            <i class="fas fa-comment-alt"></i> Post
+        <% end %>
         <%end%>
       </div>
     </div>
