@@ -15,7 +15,7 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder:"email" %>
   </div><br>
     <div class="field">
-       <%= f.select 'career_id', options_for_select(Career.all.collect{ |u| [u.field, u.id] }), class:"selectpicker w-100", data: { live_search: 'true' }%>
+        <%= f.select(:career_id, Career.all.collect {|u| [u.field, u.id]}, {:prompt => 'Select your career'},{class: "form-control selectpicker",data: {"live-search": true}}) %><br><br>
   </div><br>
    
   <div class="field">
