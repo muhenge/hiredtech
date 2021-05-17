@@ -25,9 +25,9 @@ class SkillsController < ApplicationController
     @skill = current_user.skills.build(skill_params)
     
       if @skill.save
-        redirect_to user_path(current_user), notice:"Skill added"
+        redirect_to user_path(current_user), notice:"Skill added successfully"
       else
-       redirect_to user_path(current_user), notice:"Failed"
+       redirect_to user_path(current_user), alert:"Failed, check if skill level is provided"
       end
   end
 
@@ -36,7 +36,7 @@ class SkillsController < ApplicationController
       if @skill.update(skill_params)
         redirect_to user_path(current_user), notice:"Skill updated"
       else
-        redirect_to user_path(current_user), notice:"Failed"
+        redirect_to user_path(current_user), alert:"Failed"
       end
   end
 

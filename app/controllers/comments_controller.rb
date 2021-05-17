@@ -8,8 +8,8 @@ class CommentsController < ApplicationController
         redirect_to post_path(@post)
         flash[:notice] = 'Comment added'
     else
-        render 'new'
-        flash[:notice] = 'Failed'
+      redirect_to post_path(@post)
+      flash[:alert] = 'Failed'
     end
   end
 

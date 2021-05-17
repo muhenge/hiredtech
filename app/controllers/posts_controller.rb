@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
     before_action :set_post, only: %i[show edit update edit destroy]
-    before_action :authenticate_user!, only: [:index,:create, :edit, :update, :show, :destory, :vote]
+    before_action :authenticate_user!, only: [:index, :new, :create, :edit, :update, :show, :destory, :vote]
+    respond_to :js, :json, :html 
     def index
         @posts = Post.most_recent
         #@current_user_career = current_user.career
@@ -35,8 +36,14 @@ class PostsController < ApplicationController
     end
 
     def vote
-        @post.upvote_by current_user
-        redirect_back fallback_location: root_path
+        if !current_user.liked? @post
+            @post.like_by current_user
+        elsif
+            @post.unlike_by current_user
+        end
+
+        # @post.upvote_by current_user
+        # redirect_back fallback_location: root_path
     end
 
     private
