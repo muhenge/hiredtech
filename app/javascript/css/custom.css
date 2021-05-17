@@ -86,8 +86,9 @@ a {
 .register-photo .image-holder {
   display: table-cell;
   width: auto;
-  background-color: teal;
   background-size: cover;
+  background-image: url("~deal.jpg");
+  object-fit: cover;
 }
 
 .register-photo .form-container {
@@ -976,6 +977,10 @@ a {
 }
 a:hover{
 text-decoration:none;
+}
+
+.image-holder {
+  
 }
 
 .search {

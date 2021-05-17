@@ -15,6 +15,7 @@ import "@fortawesome/fontawesome-free/css/all"
 import "../trix-editor-overrides"
 import "jquery"
 import "@fortawesome/fontawesome-free/css/all"
+const images = require.context('../images', true)
 
 //import "jquery-ujs"
 
