@@ -21,9 +21,9 @@ class PostsController < ApplicationController
         @post = current_user.posts.build(post_params)
         if  @post.save
             redirect_to posts_path
-            flash[:notice] = 'Posted'
+            flash[:notice] = 'Posted successfully'
         else
-            flash[:alert] = 'Failed'
+            flash[:alert] = 'Not posted, try again'
             redirect_to posts_path
         end
     end

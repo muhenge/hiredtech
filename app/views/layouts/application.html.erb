@@ -15,6 +15,7 @@
     <%= render partial: "shared/nav" %>
 
   <% flash.each do |key, value|%>
+  <div class="container">
    <% if key == 'notice' %>
     
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -33,6 +34,7 @@
 </div>
    <% end %>
   <%end%>
+  </div>
     <%= yield %>
   </body>
 </html>
