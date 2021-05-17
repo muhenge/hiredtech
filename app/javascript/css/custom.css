@@ -977,3 +977,8 @@ a {
 a:hover{
 text-decoration:none;
 }
+
+.search {
+  position: sticky;
+  top: 10%;
+}

@@ -108,7 +108,7 @@
                 
                 <% if @user == current_user %>
                     <%= link_to  "Edit", edit_user_skill_path(current_user, skills),class:"text-succes" %> <span class="divider"></span>
-                <%= link_to 'Delete', skills , method: :delete, class:"text-danger" %>
+                    <%= link_to 'Delete', skills , method: :delete, class:"text-danger" %>
                 <% end %>
                 
                 
@@ -132,7 +132,7 @@
     <% if @user == current_user %>
       People connected
     <% else %>
-      Connected to <%= @user.username.capitalize %>
+     Connected to <%= @user.username.capitalize %>
     <% end %>
     
     </a></li>
@@ -159,7 +159,7 @@
                 <% @user.followers.each do |followers| %>
                 <div class="d-inline">
                     <%= link_to  relationship_user_path(@user.followers, followers), :action => 'go' do %>
-                        <%= image_tag user_avatar(followers), class:"border rounded-circle img-profile"%>
+                        <%= image_tag user_avatar(followers), class:"border rounded-circle img-profile",data: {toggle: "tooltip", placement: "left", html:"true" }, title: "Visit #{followers.username.capitalize} profile"%>
                     <%end%>
                     
                 </div>
