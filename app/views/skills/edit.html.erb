@@ -2,12 +2,12 @@
 <div class="container">
   <div class="row shadow-lg p-5">
     <div class="mb-5">
-      <h1 class="text-center">Editing Skill</h1>
+      <h1 class="text-center"><i class="fas fa-edit"></i> Editing Skill</h1>
     </div>
     <div class="col-lg-12">
       <%= form_for @skill do |f| %>
         <%= f.text_field :name, placeholder:"Add new skills" %>
-        <%= f.number_field :level, placeholder:"Add skill level", min: 0, max: 100,step: 5 %>
+        <%= f.number_field :level, placeholder:"Add skill level", min: 0, max: 100 %>
         <%= f.submit "Edit", class:"btn-success"%>
       <%end%>
     </div>
