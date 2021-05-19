@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     def show
         @skill = Skill.new
         @user_skills = @user.skills
-        @user_posts = @user.posts.limit(5)
+        @user_posts = @user.posts.most_recent.limit(5)
     end
 
     def current_user_skills
