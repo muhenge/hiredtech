@@ -22,7 +22,7 @@ body {
 }
 
 .landpage-header {
-  height: 100vh;
+  height: auto;
 }
 
 /* Profile sidebar */
