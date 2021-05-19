@@ -3,7 +3,7 @@ module ApplicationHelper
         if user.avatar.attached?
             user.avatar
         else
-            'img'
+            'img.png'
         end
     end
 
