@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-    before_action :set_post, only: %i[show edit update edit destroy]
+    before_action :set_post, only: %i[show edit update edit destroy vote]
     before_action :authenticate_user!, only: [:index, :new, :create, :edit, :update, :show, :destory, :vote]
     respond_to :js, :json, :html 
     def index
@@ -37,9 +37,9 @@ class PostsController < ApplicationController
 
     def vote
         if !current_user.liked? @post
-            @post.like_by current_user
-        elsif
-            @post.unlike_by current_user
+            @post.liked_by current_user
+        elsif current_user.liked? @post
+            @post.unliked_by current_user
         end
 
         # @post.upvote_by current_user

@@ -66,10 +66,11 @@
                         <%end%>
                     </div>
                     <div>
-                      <%= link_to like_post_path(post), method: :put, remote: :true do%>
+                      <%= link_to like_post_path(post),class:"like-btn", method: :put, remote: :true do%>
                                 <span><i class="fas fa-thumbs-up"></i></span>
-                                <span class="likes-count"><%= post.get_upvotes.size %></span>
+                                
                         <% end %>
+                        <span class="likes-count"><%= post.get_upvotes.size %></span>
                     </div>
                   </div>
                           
