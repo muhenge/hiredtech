@@ -1,53 +1,22 @@
-
-
 <div class="container">
-    <div class="row">
-        <div class="col-md-12 d-flex justify-content-center">
-            <button type="button" class="post-btnn w-50" data-toggle="modal" data-target="#exampleModalCenter">
-                   <i class="fas fa-comment-alt"></i> Start a post
-            </button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Post something</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <%= form_for Post.new, :url => posts_path(), :method => :post do |f| %>
-    <%= f.rich_text_area :content, placeholder: "Post here", class:"w-100 text",cols: 60, rows: 15 %>
-         <%= f.select(:career_id, Career.all.collect {|u| [u.field, u.id]}, {:prompt => 'Tag to a career'},{class: "form-control selectpicker",data: {"live-search": true}}) %><br><br>
-        <%= f.select :skill_id, options_for_select(Skill.all.collect{ |u| [u.name, u.id] }), {prompt:"Tag to skill"}, {class: "form-control selectpicker", data: {"live-search": true}}%>
-    </div><br>
-     
-
-      <div class="modal-footer">
-        <%= button_tag( :class => "btn btn-primary w-100") do %>
-            <i class="fas fa-comment-alt"></i> Post
-        <% end %>
-        <%end%>
-      </div>
-    </div>
+<!--Fixed tab example -->
+<div class="card pmd-card">
+  <div class="pmd-tabs pmd-tabs-dark bg-primary" scroll="true">
+      <ul role="tablist" class="nav nav-tabs nav-fill">
+        <li class="nav-item" role="presentation"><a class="nav-link active" data-toggle="tab" role="tab" aria-controls="home" href="#home-fixed">Default</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" role="tab" aria-controls="profile" href="#about-fixed">Fixed</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" role="tab" aria-controls="messages" href="#work-fixed">Scrollable</a></li>
+      </ul>
   </div>
-</div>
-</div>
-    </div>
-    <div class="row">
-        <div class="col-md-4 col-lg-3  mt-5">
-            <%= current_user.career.field %>
-        </div>
-        <div class="col-md-4 col-lg-6 mt-5">
-            <div class="posts">
-                
-                
-                <% current_user.following.each do |followed| %>
+  <div class="card-body">
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="home-fixed">A tab provides the affordance for displaying grouped content. A tab label succinctly describes the tab’s associated grouping of content.</div>
+        <div role="tabpanel" class="tab-pane" id="about-fixed">Fixed tabs have equal width, calculated either as the view width divided by the number of tabs, or based on the widest tab label. To navigate between fixed tabs, touch the tab or swipe the content area left or right.</div>
+        <div role="tabpanel" class="tab-pane" id="work-fixed">
+           <% current_user.following.each do |followed| %>
                     <% followed.posts.each do |post| %>
                   
-               <div class="post">
+               <div class="d-flex flex-column border rounded p-2 mb-2">
                <%= link_to post_user_path(post, post.user), :action => 'go' do %>
                 <%= image_tag user_avatar(post.user), class:"border rounded-circle img-profile"%>
                 <%= post.user.username.capitalize %>
@@ -55,13 +24,12 @@
                 
                 <hr> 
                 <div class="post-content">
-              
-                    <%= simple_format(post.content) %>
+                      <%= simple_format(post.content) %>
                   </div>
                   <hr>
                   <div class="d-flex flex-row">
                     <div>
-                        <%= link_to post_path(post), class:"border p-2 shadow rounded", :action => "go" do %>
+                        <%= link_to post_path(post), class:"border p-2 shadow-sm rounded", :action => "go" do %>
                           <i class="fas fa-comments"></i> Read or Comment
                         <%end%>
                     </div>
@@ -72,41 +40,12 @@
                         <% end %>
                         <span class="likes-count"><%= post.get_upvotes.size %></span>
                     </div>
-                  </div>
-                          
-                             
-               
-                 
+                  </div>  
               </div>
                 <% end %>
                 <% end %>
-            </div>
         </div>
-        <div class="col-md-4 col-lg-3 bg-warning h-100"></div>
-    </div>
+      </div>
+  </div>
+</div> <!--Fixed tab example end-->
 </div>
-
-	<div class="tab_container">
-			<input id="tab1" type="radio" name="tabs" checked>
-			<label for="tab1"><i class="fa fa-code"></i><span><%=current_user.career.field%> posts</span></label>
-
-			<input id="tab2" type="radio" name="tabs">
-			<label for="tab2"><i class="fa fa-pencil-square-o"></i><span>My posts</span></label>
-
-			<input id="tab3" type="radio" name="tabs">
-			<label for="tab3"><i class="fa fa-bar-chart-o"></i><span>Connections posts</span></label>
-
-			<section id="content1" class="tab-content">
-		      
-		      	
-			</section>
-
-			<section id="content2" class="tab-content">
-		      
-			</section>
-
-			<section id="content3" class="tab-content">
-		      
-		    
-			</section>
-		</div>
