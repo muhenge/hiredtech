@@ -1,6 +1,40 @@
 <div class="container">
-<!--Fixed tab example -->
-<div class="card pmd-card">
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-center">
+            <button type="button" class="post-btnn w-50" data-toggle="modal" data-target="#exampleModalCenter">
+                   <i class="fas fa-comment-alt"></i> Start a post
+            </button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Post something</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_for Post.new, :url => posts_path(), :method => :post do |f| %>
+    <%= f.rich_text_area :content, placeholder: "Post here", class:"w-100 text",cols: 60, rows: 15 %>
+         <%= f.select(:career_id, Career.all.collect {|u| [u.field, u.id]}, {:prompt => 'Tag to a career'},{class: "form-control selectpicker",data: {"live-search": true}}) %><br><br>
+        <%= f.select :skill_id, options_for_select(Skill.all.collect{ |u| [u.name, u.id] }), {prompt:"Tag to skill"}, {class: "form-control selectpicker", data: {"live-search": true}}%>
+    </div><br>
+     
+
+      <div class="modal-footer">
+        <%= button_tag( :class => "btn btn-primary w-100") do %>
+            <i class="fas fa-comment-alt"></i> Post
+        <% end %>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+    </div>
+ <div class="card pmd-card">
   <div class="pmd-tabs pmd-tabs-dark bg-white" scroll="true">
       <ul role="tablist" class="nav nav-tabs nav-fill">
         <li class="nav-item" role="presentation"><a class="nav-link active" data-toggle="tab" role="tab" aria-controls="home" href="#home-fixed"><%= current_user.career.field.capitalize %> posts</a></li>
@@ -97,3 +131,4 @@
   </div>
 </div> <!--Fixed tab example end-->
 </div>
+
