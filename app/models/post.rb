@@ -6,7 +6,5 @@ class Post < ApplicationRecord
   has_many :skills
   # has_one_attached :image
   has_one_attached :attachment
-
-  
   scope :most_recent, -> { order(created_at: :desc) }
 end
