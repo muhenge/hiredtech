@@ -800,11 +800,8 @@ textarea.form-control {
   text-decoration: none;
 }
 
-.post {
-  padding: 12px;
-  margin-top: 12px;
-  background-color:#ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+.posts {
+  padding: 0 35vh 0 35vh;
 }
 
 
