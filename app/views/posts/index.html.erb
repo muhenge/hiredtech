@@ -86,30 +86,27 @@
     </div>
 </div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="tab" role="tabpanel">
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">Section 1</a></li>
-                    <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">Section 2</a></li>
-                    <li role="presentation"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">Section 3</a></li>
-                </ul>
-                <!-- Tab panes -->
-                <div class="tab-content tabs">
-                    <div role="tabpanel" class="tab-pane active" id="Section1">
-                        <p>halallalallallalal</p>
-                    </div>
-                    <div role="tabpanel" class="tab-pane fade" id="Section2">
-                        <h3>SecKtion 2</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non iaculis mi varius.</p>
-                    </div>
-                    <div role="tabpanel" class="tab-pane fade" id="Section3">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non iaculis mi varius.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+	<div class="tab_container">
+			<input id="tab1" type="radio" name="tabs" checked>
+			<label for="tab1"><i class="fa fa-code"></i><span><%=current_user.career.field%> posts</span></label>
+
+			<input id="tab2" type="radio" name="tabs">
+			<label for="tab2"><i class="fa fa-pencil-square-o"></i><span>My posts</span></label>
+
+			<input id="tab3" type="radio" name="tabs">
+			<label for="tab3"><i class="fa fa-bar-chart-o"></i><span>Connections posts</span></label>
+
+			<section id="content1" class="tab-content">
+		      
+		      	
+			</section>
+
+			<section id="content2" class="tab-content">
+		      
+			</section>
+
+			<section id="content3" class="tab-content">
+		      
+		    
+			</section>
+		</div>
