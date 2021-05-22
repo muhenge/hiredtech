@@ -19,8 +19,12 @@ const images = require.context('../images', true)
 
 //import "jquery-ujs"
 
-$('.my-select').selectpicker();
+$('.my-select').selectpicker('refresh');
 
+$('#myTabs a').click(function (e) {
+	  e.preventDefault()
+	  $(this).tab('show')
+	})
 
 Rails.start()
 Turbolinks.start()
