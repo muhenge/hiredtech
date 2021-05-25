@@ -32,6 +32,9 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google'
 gem 'omniauth-linkedin'
+gem 'omniauth-github'
+gem 'omniauth-gitlab'
+
 gem 'trix'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false

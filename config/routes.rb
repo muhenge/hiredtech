@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resources :skills do
     resources :users
   end
-  devise_for :user
+  devise_for :user, controllers: {
+    'omniauth_callbacks': 'users/omniauth_callbacks'
+  }
   resources :posts do
     resources :users
     resources :comments

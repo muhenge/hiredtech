@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
   def index
     @user_posts = current_user.posts.most_recent
-    @career_post = current_user.career.posts.most_recent
+    @career_post = current_user.career.posts
   end
 
   def show

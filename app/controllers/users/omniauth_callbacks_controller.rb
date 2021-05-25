@@ -8,6 +8,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # def twitter
   # end
 
+  def github
+    request.env['omniauth.auth']
+  end
   # More info at:
   # https://github.com/heartcombo/devise#omniauth
 
