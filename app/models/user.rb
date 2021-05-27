@@ -30,12 +30,14 @@ class User < ApplicationRecord
     following.include?(user)
   end
 
-  def self.user_following_posts
-    user.following.each do |u|
-      u.posts
+  def self.from_github(auth)
+    where(github_id: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.username = auth.info.name
+      user.password = Devise.friendly_token[0,20]
+      user.skip_confirmation!
     end
   end
-
   def self.find_first_by_auth_conditions(warden_conditions)
     condition = warden_conditions.dup
     if login = condition.delete(:login)
@@ -52,5 +54,5 @@ class User < ApplicationRecord
       all.sort_by {|e| e.username}
     end
   end
-  
+
 end

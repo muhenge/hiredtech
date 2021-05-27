@@ -33,7 +33,10 @@
   </div><br>
 
   <div class="actions">
-    <%= f.submit "Sign up",class:"my-btn" %><br><br>
+    <%= f.submit "Sign up",class:"btn btn-primary" %><br><br>
+    <%= link_to "Sign Up with Google",  user_google_omniauth_authorize_path, class: "btn btn-danger"  %><br><br>
+    <%= link_to "Sign Up with GitHub",  user_github_omniauth_authorize_path, class: "btn"  %>
+
     <%= link_to  "You already have an account? Login here.", new_user_session_path, class:"text-secondary align-center d-flex justify-content-center" %>
 
   </div>

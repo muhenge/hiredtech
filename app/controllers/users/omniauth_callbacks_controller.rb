@@ -9,7 +9,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # end
 
   def github
-    request.env['omniauth.auth']
+    @user = User.from_github(request.env['omniauth.auth'])
+    if @user.persisted?
+      sign_in_and_redirect @user, event: :authentication
+    else
+      session['devise.github'] = request.env['omniauth.auth']
+      redirect_to new_user_registration_path
+    end
   end
   # More info at:
   # https://github.com/heartcombo/devise#omniauth

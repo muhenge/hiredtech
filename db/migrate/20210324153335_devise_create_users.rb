@@ -15,6 +15,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
 
+      ## omniauth
+
+      t.string :github_id
+
       ## Rememberable
       t.datetime :remember_created_at
 
