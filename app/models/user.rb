@@ -5,7 +5,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  devise :omniauthable, omniauth_providers:  %i[google github gitlab facebook linkedin]
+  devise :omniauthable, omniauth_providers:  [:github]
   validates :username, presence: true, uniqueness: {case_sensitive: false}, format: {with: /\A[a-zA-Z0-9 _\.]*\z/}
   has_one_attached :avatar
   belongs_to :career
@@ -38,6 +38,16 @@ class User < ApplicationRecord
       user.skip_confirmation!
     end
   end
+
+  # def self.from_facebook(auth)
+  #   where(facebook_id: auth.uid).first_or_create do |user|
+  #     user.email = auth.info.email
+  #     user.username = auth.info.name
+  #     user.password = Devise.friendly_token[0,20]
+  #     user.skip_confirmation!
+  #   end
+  # end
+
   def self.find_first_by_auth_conditions(warden_conditions)
     condition = warden_conditions.dup
     if login = condition.delete(:login)

@@ -274,7 +274,7 @@ Devise.setup do |config|
   config.omniauth :facebook, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :google, "CONSUMER_KEY", "CONSUMER_SECRET"
   config.omniauth :linkedin, "consumer_key", "consumer_secret"
-  config.omniauth :github, "consumer_key", "consumer_secret"
+  config.omniauth :github, "e6eff9501293c0dcb302", "792900a30aff44d1c7dd851f5a831e008dcf2120"
   config.omniauth :gitlab, "consumer_key", "consumer_secret"
   # provider :gitlab, ENV['GITLAB_KEY'], ENV['GITLAB_SECRET']
   # provider :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET']
