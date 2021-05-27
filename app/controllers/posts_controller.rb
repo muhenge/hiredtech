@@ -24,7 +24,7 @@ class PostsController < ApplicationController
       redirect_to posts_path
       flash[:notice] = 'Posted successfully'
     else
-      flash[:alert] = 'Not posted, try again'
+      flash[:alert] = 'Not posted, must 10 words max, try again!'
       redirect_to posts_path
     end
   end

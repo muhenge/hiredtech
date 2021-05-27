@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   acts_as_votable
+  validates :content, :presence => true, length: {minimum:10}
   belongs_to :user
   has_many :comments
   belongs_to :career
