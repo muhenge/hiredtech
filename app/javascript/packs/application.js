@@ -19,7 +19,7 @@ const images = require.context('../images', true)
 
 //import "jquery-ujs"
 
-$('.my-select').selectpicker('refresh');
+$('select').selectpicker();
 
 $('#myTabs a').click(function (e) {
 	  e.preventDefault()
