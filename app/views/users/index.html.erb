@@ -1,0 +1,53 @@
+<div class="container bootstrap snippets bootdey">
+
+    <div class="row">
+        <div class="col-lg-2">
+        <div class="search">
+             <%= form_for users_path, :method => 'get' do%>
+                <%= text_field_tag :search, params[:search], placeholder:"Enter a name" %><br><br>
+            <%= submit_tag "Search",class:"btn btn-primary" %><br><br>
+            <%end%>
+            
+        </div>
+        </div>
+
+        <div class="col-lg-10">
+        
+            <div class="main-box no-header clearfix">
+                <div class="main-box-body clearfix w-100">
+                    <div class="table-sm-responsive w-100">
+                        <table class="table user-list w-100">
+                            <thead>
+                                <tr>
+                                <th><span>People</span></th>
+                                <th><span>email</span></th>
+                                <th><span>Joined</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% @users.each do |user| %>
+                                <tr>
+                                    <td>
+                                        <%= image_tag user_avatar(user), class:"profile-img img-responsive center-block"%>
+                                        <%= link_to user.username.capitalize, user_path(user), class:"user-link" %>
+                                        <span class="user-subhead text-center"><%= user.career.field %>
+                                    </td>
+                                     <td>
+                                        <%= mail_to "#{user.email.downcase}" %>
+                                    </td>
+                                    <td><%= user.created_at %></td>
+                                <tr>
+                                <%end%>
+                               
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div
+

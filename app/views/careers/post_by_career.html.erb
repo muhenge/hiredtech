@@ -1,0 +1,76 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-center">
+            <button type="button" class="post-btnn w-50" data-toggle="modal" data-target="#exampleModalCenter">
+                    Start a post
+            </button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Post something</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_for Post.new, :url => posts_path(), :method => :post do |f| %>
+    <%= f.rich_text_area :content, placeholder: "Post here", class:"w-100 text",cols: 60, rows: 15 %>
+    <%= f.label :field, "Tag to" %>
+  <%= f.collection_select(:career_id, Career.all, :id, :field, :prompt => 'Select your title', class:"form-select w-100") %>   
+  
+
+      </div>
+      <div class="modal-footer">
+        <%= f.submit "Post",class:"btn btn-primary" %>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-md-2 mt-5">
+            
+        </div>
+        <div class="col col-md-8 mt-5 d-flex justify-content-center">
+            <div class="posts">
+                      
+                <div class="text-center mb-5 border p-5">
+                <%= link_to 'Back to posts', posts_path %>
+                </div>
+
+               <% @posts.each do |post| %>
+                
+               <div class="post">
+               <%= link_to post_user_path(post, post.user), :action => 'go' do %>
+                <%= image_tag user_avatar(post.user), class:"border rounded-circle img-profile"%>
+                <%= post.user.username.capitalize %>
+               <%end%>
+                
+                <hr> 
+                <div class="post-content">
+                <% @posts.each do |post| %>
+                    
+                    <%= link_to simple_format(post.content), post_path(post) %>
+                <% end %>
+                        
+                  </div>
+                  <hr>
+                  
+                            <%= link_to like_post_path(post), method: :put do%>
+                                 <i class="fas fa-thumbs-up"></i>
+                                <%= post.get_upvotes.size %><br>
+                        <% end %>
+                 
+              </div>
+            <%end%>
+            </div>
+        </div>
+        <div class="col col-md-2 bg-warning h-100"></div>
+    </div>
+</div>

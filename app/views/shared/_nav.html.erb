@@ -1,0 +1,37 @@
+<nav class="navbar navbar-light navbar-expand-md navigation-clean-button border-bottom shadow bg-light mb-5 sticky-top">
+    <div class="container"> <%= link_to "Hiredev", root_path, class:"navbar-brand"  %><button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="nav navbar-nav mr-auto">
+                <li class="nav-item"></li>
+            </ul>
+            
+            <% if user_signed_in? %>
+            <ul class="nav navbar-nav flex-nowrap ml-auto">
+                <li class="nav-item dropdown no-arrow"></li>
+                    <div class="nav-item dropdown no-arrow"><a data-toggle="dropdown" aria-expanded="false" class="dropdown-toggle nav-link" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small"><%= image_tag user_avatar(current_user), class:"border rounded-circle img-profile"%><%= current_user.username.capitalize%></span></a>
+                        <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in">
+                            <%= link_to  posts_path,class:"dropdown-item", :action =>'go' do%>
+                                <i class="fas fa-home"></i> Home
+                            <%end%>
+                            <%= link_to  users_path,class:"dropdown-item", :action =>'go' do%>
+                                <i class="fas fa-search"></i>  Find developers
+                            <%end%>
+                            <%= link_to  user_path(current_user),class:"dropdown-item", :action =>'go' do%>
+                                <i class="fas fa-users-cog"></i>  Your profile | settings
+                            <%end%>
+
+                             <%= link_to  destroy_user_session_path ,class:"dropdown-item", :action =>'go' do%>
+                                <i class="fas fa-sign-out-alt"></i>  Logout
+                            <%end%>
+                            
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <% else %>
+                <span class="navbar-text actions"><%= link_to "Login", new_user_session_path %> <%= link_to "Sign up", new_user_registration_path, class:"btn btn-primary text-white", role:"button"%></span>
+            <% end %>
+            
+        </div>
+    </div>
+</nav>

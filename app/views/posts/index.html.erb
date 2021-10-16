@@ -1,0 +1,135 @@
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-center">
+            
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Post something</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_for Post.new, :url => posts_path(), :method => :post do |f| %>
+    <%= f.rich_text_area :content, placeholder: "Post here", class:"w-100 text",cols: 60, rows: 15 %>
+    
+         <%= f.select(:career_id, Career.all.collect {|u| [u.field, u.id]}, {:prompt => 'Tag to a career'},{class: "form-control selectpicker",data: {"live-search": true}}) %><br><br>
+        <%= f.select :skill_id, options_for_select(Skill.all.collect{ |u| [u.name, u.id] }), {prompt:"Tag to skill"}, {class: "form-control selectpicker", data: {"live-search": true}}%>
+    </div><br>
+      <div class="modal-footer">
+        <%= button_tag( :class => "btn btn-primary w-100") do %>
+            <i class="fas fa-comment-alt"></i> Post
+        <% end %>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+    </div>
+ <div class="card pmd-card">
+  <div class="pmd-tabs pmd-tabs-dark bg-white" scroll="true">
+      <ul role="tablist" class="nav nav-tabs nav-fill">
+        <li class="nav-item" role="presentation"><a class="nav-link active" data-toggle="tab" role="tab" aria-controls="home" href="#home-fixed"><%= current_user.career.field.capitalize %> posts</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" role="tab" aria-controls="profile" href="#about-fixed">My posts</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" role="tab" aria-controls="messages" href="#work-fixed">My connection's posts</a></li>
+      </ul>
+  </div>
+  <div class="card-body">
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="home-fixed">
+                  <div class="posts">
+         
+                    <% @career_post.each do |post| %>
+                  
+               <div class="d-flex flex-column border rounded p-2 mb-2">
+               <%= link_to post_user_path(post, post.user), :action => 'go' do %>
+                <%= image_tag user_avatar(post.user), class:"border rounded-circle img-profile"%>
+                <%= post.user.username.capitalize %>
+               <%end%>
+                
+                <hr> 
+                <div class="post-content">
+                      <%= simple_format(post.content) %>
+                  </div>
+                  <hr>
+                  <div class="d-flex flex-row">
+                    <div>
+                        <%= link_to post_path(post), class:"border p-2 shadow-sm rounded", :action => "go" do %>
+                          <i class="fas fa-comments"></i> Read or Comment
+                        <%end%>
+                    </div>
+                    <div>
+                      <%= link_to like_post_path(post),class:"like-btn", method: :put, remote: :true do%>
+                                <span><i class="fas fa-thumbs-up"></i></span>
+                                
+                        <% end %>
+                        <span class="likes-count"><%= post.get_upvotes.size %></span>
+                    </div>
+                  </div>  
+              </div>
+                <% end %>
+                </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="about-fixed">
+          <div class="posts">
+            <% @user_posts.each do |post| %>
+              <div class="d-flex flex-column border rounded p-2 mb-2">
+                <div class="post-content">
+                <div class="attach">
+                </div>
+                <%= link_to post_path(post), :action => 'go' do %>
+
+                  <%= simple_format(post.content) %>
+
+                <%end%>
+                </div>
+              </div>
+            <%end%>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="work-fixed">
+        <div class="posts">
+           <% current_user.following.each do |followed| %>
+                    <% followed.posts.most_recent.each do |post| %>
+                  
+               <div class="d-flex flex-column border rounded p-2 mb-2">
+               <%= link_to post_user_path(post, post.user), :action => 'go' do %>
+                <%= image_tag user_avatar(post.user), class:"border rounded-circle img-profile"%>
+                <%= post.user.username.capitalize %>
+               <%end%>
+                
+                <hr> 
+                <div class="post-content">
+                      <%= simple_format(post.content) %>
+                  </div>
+                  <hr>
+                  <div class="d-flex flex-row">
+                    <div>
+                        <%= link_to post_path(post), class:"border p-2 shadow-sm rounded", :action => "go" do %>
+                          <i class="fas fa-comments"></i> Read or Comment
+                        <%end%>
+                    </div>
+                    <div>
+                      <%= link_to like_post_path(post),class:"like-btn", method: :put, remote: :true do%>
+                                <span><i class="fas fa-thumbs-up"></i></span>
+                                
+                        <% end %>
+                        <span class="likes-count"><%= post.get_upvotes.size %></span>
+                    </div>
+                  </div>  
+              </div>
+                <% end %>
+                <% end %>
+                </div>
+        </div>
+      </div>
+  </div>
+</div> <!--Fixed tab example end-->
+
+<button type="button" class="btn-circle btn-xl btn-success btn-post" data-toggle="modal" data-target="#exampleModalCenter">
+                   <i class="fas fa-comment-alt"></i>
+            </button>

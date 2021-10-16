@@ -1,0 +1,46 @@
+
+<section class="register-photo">
+
+    <div class="form-container">
+    
+        <div class="image-holder"></div>
+       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <h2 class="text-secondary align-center d-flex justify-content-center">Create an account</h2><br>
+  <div class="field">
+    <%= f.text_field :firstname, autofocus: true, autocomplete: "firstname", placeholder:"First name" %><br><br>
+    <%= f.text_field :lastname, autofocus: true, autocomplete: "firstname", placeholder:"Last name" %>
+  </div><br>
+  <div class="field">
+    <%= f.text_field :username, autofocus: true, autocomplete: "username",placeholder:"Username" %>
+  </div><br>
+  <div class="field">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder:"email" %>
+  </div><br>
+    <div class="field">
+        <%= f.select(:career_id, Career.all.collect {|u| [u.field, u.id]}, {:prompt => 'Select your career'},{class: "form-control selectpicker my-select",data: {"live-search": true}}) %><br><br>
+  </div><br>
+   
+  <div class="field">
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password",placeholder:"Password" %>
+  </div><br>
+
+  <div class="field">
+    <%= f.password_field :password_confirmation, autocomplete: "new-password",placeholder:"confirm password" %>
+  </div><br>
+
+  <div class="actions">
+    <%= f.submit "Sign up",class:"btn btn-primary" %><br><br>
+
+
+
+    <%= link_to  "You already have an account? Login here.", new_user_session_path, class:"text-secondary align-center d-flex justify-content-center"%>
+
+  </div>
+</div>
+
+<% end %><br>
+</section>

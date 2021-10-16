@@ -1,0 +1,192 @@
+
+<div class="container bootstrap snippets bootdeys">
+    <div class="row" id="user-profile">
+        <div class="col-lg-3 col-md-4 col-sm-4 left">
+            <div class="main-box clearfix sticky-top">
+                <h2> <%= @user.username.capitalize %> </h2>
+                
+                <% if @user == current_user %>
+                    <%= image_tag user_avatar(current_user), class:"profile-img img-responsive center-block"%>
+                <% else %>
+                  <%= image_tag user_avatar(@user), class:"profile-img img-responsive center-block"%>
+                <% end %>
+                
+                <div class="profile-label">
+                    <span class="label label-danger"><strong><%= @user.career.field%></strong></span>
+                </div>
+                
+                <% if @user == current_user %>
+                  
+                <% else %>
+                    <div class="profile-message-btn center-block text-center">
+                     <% if current_user && current_user.following?(@user) %>
+                        <%= render 'unfollow' %>
+                        <% else %>
+                        <%= render 'follow' %>
+                    <% end %>
+                </div>
+                <% end %>
+            </div>
+            
+            
+
+        </div>
+
+        <div class="col-lg-9 col-md-8 col-sm-8">
+            <div class="main-box clearfix">
+                <div class="profile-header">
+                <% if @user == current_user %>
+                  <h3><span>User info</span></h3>
+                   
+                    <%= link_to  edit_user_registration_path, :class => "btn btn-primary edit-profile", :action => "go" do %>
+                        <i class="fas fa-user-edit"></i> Edit profile
+                    <%end%>
+                <% else %>
+                   <h3><span>User info</span></h3>
+                <% end %>
+                </div>
+                <div class="row profile-user-info">
+                    <div class="col-sm-8">
+                        <div class="profile-user-details clearfix">
+                            <div class="profile-user-details-label">
+                                First Name
+                            </div>
+                            <div class="profile-user-details-value">
+                                <%= @user.firstname.capitalize %>
+                            </div>
+                        </div>
+                        <div class="profile-user-details clearfix">
+                            <div class="profile-user-details-label">
+                                Last Name
+                            </div>
+                            <div class="profile-user-details-value">
+                                <%= @user.lastname.capitalize %>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="col-sm-4 profile-social">
+                        <ul class="fa-ul">
+                        <strong>email: </strong> <%= mail_to "#{@user.email}"%>
+                            
+                        </ul>
+                    </div>
+                    
+                </div>
+                <div class="profile-details">
+            
+                      <h3>Skills</h3>
+                    
+                    <% if @user.skills.empty? %>
+                      <span class="text-secondary">No skills registered<span>
+                    <% else %>
+                    <% end %>
+                    
+                        <%@user_skills.each do |skills|%>
+                            <div class="fa-ul border-bottom mb-2 p-2">
+                      <%= skills.name %>
+
+
+                              <div class="progress">
+                     <div class="progress-bar bg-success" role="progressbar" style="width: <%= skills.level %>%;" aria-valuenow="<%= skills.level %>" aria-valuemin="0" aria-valuemax="100"><%= skills.level %>%</div>
+                </div>
+                
+                <% if @user == current_user %>
+                    <%= link_to  "Edit", edit_user_skill_path(current_user, skills),class:"text-succes" %> <span class="divider"></span>
+                    <%= link_to 'Delete', skills , method: :delete, class:"text-danger" %>
+                <% end %>
+                </div>
+                <%end%>
+                    
+                </div>
+                
+                              <% if @user == current_user %>
+                              <div class="profile-details">
+                               <h3>Add new skills</h3><br>
+                                <%= form_with model: [@skill], local: true do |f| %>
+                        <%= f.text_field :name, placeholder:"Add new skills" %><br><br>
+                                  <%= f.number_field :level, placeholder:"Add skill level", min: 0, max: 100 %><br><br>
+                                  <%= button_tag( :class => "btn btn-primary w-100") do %>
+                          <i class="fas fa-plus"></i> Add a skill
+                        <% end %>
+                      <%end%>
+                                <br>
+                    <% end %>
+                    </div>
+                              <br>
+    
+                <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item" role="presentation"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">
+    <% if @user == current_user %>
+      My posts
+    <% else %>
+       <%= @user.username.capitalize %>'s posts
+    <% end %>
+    
+    </a></li>
+    <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">
+    <% if @user == current_user %>
+      People connected
+    <% else %>
+     Connected to <%= @user.username.capitalize %>
+    <% end %>
+    
+    </a></li>
+    <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3"><% if @user == current_user %>
+      Connected to
+    <% else %>
+     <%= @user.username.capitalize %> connections
+    <% end %></a></li>
+</ul>
+<div class="tab-content">
+    <div class="tab-pane active" role="tabpanel" id="tab-1">
+        <p class="p-3">
+        <% @user_posts.each do |posts| %>
+            <%= link_to simple_format(posts.content.capitalize.truncate(50)), user_post_path(@user, posts) %>
+            <hr>
+        <%end%>
+        </p>
+    </div>
+    <div class="tab-pane" role="tabpanel" id="tab-2">
+        <p class="p-3">
+            <% if @user.followers.empty? %>
+              No connection
+            <%else%>
+                <% @user.followers.each do |followers| %>
+                <div class="d-inline">
+                    <%= link_to  relationship_user_path(@user.followers, followers), :action => 'go' do %>
+                        <%= image_tag user_avatar(followers), class:"border rounded-circle img-profile",data: {toggle: "tooltip", placement: "left", html:"true" }, title: "Visit #{followers.username.capitalize} profile"%>
+                    <%end%>
+                    
+                </div>
+                <%end%>
+            <% end %>
+        </p>
+    </div>
+    <div class="tab-pane" role="tabpanel" id="tab-3">
+        <p class="p-3"><% if @user.following.empty? %>
+              No connection
+            <% else %>
+                <% @user.following.each do |followed| %>
+                <div class="d-inline">
+                 <%= link_to  relationship_user_path(@user.following, followed), :action => 'go' do %>
+                    <%= image_tag user_avatar(followed), class:"border rounded-circle img-profile"%>
+                 <%end%>
+                    
+                </div>
+                <%end%>
+            <% end %></p>
+    </div>
+</div>
+       </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+  
+ 
