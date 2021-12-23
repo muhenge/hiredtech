@@ -1,20 +1,21 @@
-// This file is automatically compiled by Webpack, along with any other files
-// present in this directory. You're encouraged to place your actual application logic in
-// a relevant structure within app/javascript and only use these pack files to reference
-// that code so it'll be compiled.
-
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-import "bootstrap"
 import "bootstrap-select"
 import "../css/application"
 import "../css/custom"
-import "@fortawesome/fontawesome-free/css/all"
 import "../trix-editor-overrides"
 import "jquery"
-import "@fortawesome/fontawesome-free/css/all"
+import "../vendor/@fortawesome/fontawesome-free/css/all"
+import "../front/css/font"
+import "../assets/js"
+import "../vendor/bootstrap/dist/css/bootstrap.min"
+import "../vendor/popper.js/dist/umd/popper.min"
+import "../dashboard/assets/vendor/nucleo/css/nucleo.css"
+import "../vendor/prismjs/themes/prism.css"
+import "../front/css/font"
+
 const images = require.context('../images', true)
 
 //import "jquery-ujs"
