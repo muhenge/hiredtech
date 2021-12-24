@@ -1,5 +1,5 @@
-<nav class="navbar navbar-horizontal navbar-expand-lg navbar-dark bg-light border-bottom mt-4 sticky-top">
-    <div class="container"> <%= link_to "Hiredev", root_path, class:"navbar-brand"  %><button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+<nav class="navbar navbar-horizontal navbar-expand-lg navbar-dark bg-white mt-4 sticky-top">
+    <div class="container"> <%= link_to "Hiredev", root_path, class:"navbar-brand text-dark display-3"  %><button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="nav navbar-nav mr-auto">
                 <li class="nav-item"></li>
@@ -29,52 +29,8 @@
                 </li>
             </ul>
             <% else %>
-                <span class="navbar-text actions"><%= link_to "Login", new_user_session_path %> <%= link_to "Sign up", new_user_registration_path, class:"btn btn-primary text-white", role:"button"%></span>
+                <span class="navbar-text actions"><%= link_to "Get started", new_user_registration_path, class:"btn mb-2 mr-2 btn-primary", role:"button"%></span>
             <% end %>
-            
-        </div>
-    </div>
-</nav>
-<!-- Navbar primary -->
-<nav class="navbar navbar-horizontal navbar-expand-lg navbar-dark bg-primary mt-4">
-    <div class="container">
-        <a class="navbar-brand" href="#">Primary Color</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-primary" aria-controls="navbar-primary" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbar-primary">
-            <div class="navbar-collapse-header">
-                <div class="row">
-                    <div class="col-6 collapse-brand">
-                        <a href="javascript:void(0)">
-                            <img src="https://demos.creative-tim.com/argon-dashboard-pro/assets/img/brand/blue.png">
-                        </a>
-                    </div>
-                    <div class="col-6 collapse-close">
-                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-primary" aria-controls="navbar-primary" aria-expanded="false" aria-label="Toggle navigation">
-                            <span></span>
-                            <span></span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <ul class="navbar-nav ml-lg-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Discover <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Profile</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link text-dark" href="#" id="navbar-primary_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings</a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-primary_dropdown_1">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
-            </ul>
             
         </div>
     </div>
