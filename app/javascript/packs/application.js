@@ -14,7 +14,6 @@ import "../vendor/bootstrap/dist/css/bootstrap.min"
 import "../vendor/popper.js/dist/umd/popper.min"
 import "../dashboard/assets/vendor/nucleo/css/nucleo.css"
 import "../vendor/prismjs/themes/prism.css"
-import "../front/css/font"
 
 const images = require.context('../images', true)
 
