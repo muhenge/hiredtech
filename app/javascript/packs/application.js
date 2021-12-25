@@ -12,8 +12,8 @@ import "../front/css/font"
 import "../assets/js"
 import "../vendor/bootstrap/dist/css/bootstrap.min"
 import "../vendor/popper.js/dist/umd/popper.min"
-import "../dashboard/assets/vendor/nucleo/css/nucleo.css"
-import "../vendor/prismjs/themes/prism.css"
+import "../dashboard/assets/vendor/nucleo/css/nucleo"
+import "../vendor/prismjs/themes/prism"
 
 const images = require.context('../images', true)
 
@@ -21,10 +21,10 @@ const images = require.context('../images', true)
 
 $('select').selectpicker();
 
-$('#myTabs a').click(function (e) {
-	  e.preventDefault()
-	  $(this).tab('show')
-	})
+$('#myTabs a').click(function(e) {
+    e.preventDefault()
+    $(this).tab('show')
+})
 
 Rails.start()
 Turbolinks.start()

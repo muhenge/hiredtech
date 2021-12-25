@@ -1,46 +1,51 @@
+<section class="vh-100 bg-light">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
-<section class="register-photo">
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
-    <div class="form-container">
-    
-        <div class="image-holder"></div>
-       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <h2 class="text-secondary align-center d-flex justify-content-center">Create an account</h2><br>
-  <div class="field">
-    <%= f.text_field :firstname, autofocus: true, autocomplete: "firstname", placeholder:"First name" %><br><br>
-    <%= f.text_field :lastname, autofocus: true, autocomplete: "firstname", placeholder:"Last name" %>
-  </div><br>
-  <div class="field">
-    <%= f.text_field :username, autofocus: true, autocomplete: "username",placeholder:"Username" %>
-  </div><br>
-  <div class="field">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder:"email" %>
-  </div><br>
-    <div class="field">
-        <%= f.select(:career_id, Career.all.collect {|u| [u.field, u.id]}, {:prompt => 'Select your career'},{class: "form-control selectpicker my-select",data: {"live-search": true}}) %><br><br>
-  </div><br>
-   
-  <div class="field">
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password",placeholder:"Password" %>
-  </div><br>
+                <div class="form-outline mb-4">
+                  <%= f.text_field :firstname, autofocus: true, autocomplete: "firstname", placeholder:"First name", id:"form3Example1cg", class:"form-control form-controll-lg" %><br><br>
+                  <%= f.text_field :lastname, autofocus: true, autocomplete: "firstname", placeholder:"Last name",class:"form-control" %>
+                </div>
 
-  <div class="field">
-    <%= f.password_field :password_confirmation, autocomplete: "new-password",placeholder:"confirm password" %>
-  </div><br>
+                <div class="form-outline mb-4">
+                  <%= f.text_field :username, autofocus: true, autocomplete: "username",placeholder:"Username", id:"form3Example1cg" ,class:"form-control form-control-lg" %>
+                </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up",class:"btn btn-primary" %><br><br>
+                <div class="form-outline mb-4">
+                <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder:"email",class:"form-control form-control-lg" %>
+                </div>
 
+                <div class="form-outline mb-4">
+        <%= f.select(:career_id, Career.all.collect {|u| [u.field, u.id]}, {:prompt => 'Select your career'},{class: "form-control",data: {"live-search": true}}) %><br><br>
+                </div>
 
+                <div class="form-outline mb-4">
+                 <%= f.password_field :password, autocomplete: "new-password",placeholder:"Password",class:"form-control form-control-lg" %>
+                </div>
+<div class="form-outline mb-4">
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password",placeholder:"Confirm password",class:"form-control form-control-lg" %>
+                </div>
+               
 
-    <%= link_to  "You already have an account? Login here.", new_user_session_path, class:"text-secondary align-center d-flex justify-content-center"%>
+                <div class="d-flex justify-content-center">
+                  <%= f.submit "Sign up",class:"btn btn-primary btn-block btn-lg gradient-custom-4 text-white" %><br><br>
+                </div>
 
+                <p class="text-center text-muted mt-5 mb-0">Have already an account? <%= link_to  "Login here.", new_user_session_path, class:"fw-bold text-body"%>
+
+              <%end%>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-
-<% end %><br>
 </section>
