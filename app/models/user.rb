@@ -39,15 +39,6 @@ class User < ApplicationRecord
     end
   end
 
-  # def self.from_facebook(auth)
-  #   where(facebook_id: auth.uid).first_or_create do |user|
-  #     user.email = auth.info.email
-  #     user.username = auth.info.name
-  #     user.password = Devise.friendly_token[0,20]
-  #     user.skip_confirmation!
-  #   end
-  # end
-
   def self.find_first_by_auth_conditions(warden_conditions)
     condition = warden_conditions.dup
     if login = condition.delete(:login)

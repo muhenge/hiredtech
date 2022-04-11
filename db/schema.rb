@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(version: 2021_05_16_134716) do
     t.string "about", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
+    t.string "github_id"
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
