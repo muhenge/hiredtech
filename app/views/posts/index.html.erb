@@ -1,3 +1,4 @@
 <%= @career_posts.each do %>
   <%= link_to @career_post.title, @career_post %>
+  <%= link_to post.user.usename.capilize! %>
 <% end %>
