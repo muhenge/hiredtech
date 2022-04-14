@@ -7,6 +7,7 @@ class PostsController < ApplicationController
     @posts = Post.all.includes(:user, :comments, :career).most_recent
     @career_posts = @posts.where(career_id: current_user.career_id)
     @skill_posts = @posts.where(skill_id: current_user.skill_id)
+    @post_comments = @posts.includes(:comments)
     @comment = Comment.new
   end
 

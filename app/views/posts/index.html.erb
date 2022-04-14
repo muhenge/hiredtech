@@ -1,4 +1,40 @@
-<%= @career_posts.each do %>
-  <%= link_to @career_post.title, @career_post %>
-  <%= link_to post.user.usename.capilize! %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="d-flex justify-content-center">
+        <%= form_for Post.new, :url => posts_path(), :method => :post do |f| %>
+        <%= f.rich_text_area :content, placeholder: "Post here", class:"w-100 text",cols: 60, rows: 15 %>
+    
+         <%= f.select(:career_id, Career.all.collect {|u| [u.field, u.id]}, {:prompt => 'Tag to a career'},{class: "form-control selectpicker",data: {"live-search": true}}) %><br><br>
+        <%= f.select :skill_id, options_for_select(Skill.all.collect{ |u| [u.name, u.id] }), {prompt:"Tag to skill"}, {class: "form-control selectpicker", data: {"live-search": true}}%>
+      </div><br>
+      <div class="modal-footer">
+        <%= button_tag( :class => "btn btn-primary w-100") do %>
+            <i class="fas fa-comment-alt"></i> Post
+        <% end %>
+        <%end%>
+      </div>
+      <% @career_posts.each do |post| %>
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <div class="d-flex">
+                <div class="mr-3">
+                  <%= image_tag user_avatar(post.user), class:"border rounded-circle img-profile"%>
+                </div>
+                <div>
+                  <h5 class="card-title"><%= post.user.username %></h5>
+                  <p class="card-text"><%= post.content %></p>
+                </div>
+              </div>
+            
+              <div>
+                <%= link_to "View", post_path(post), class: "btn btn-primary" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>
