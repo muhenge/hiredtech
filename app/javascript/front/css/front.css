@@ -30011,13 +30011,13 @@ label {
 }
 
 .form-control {
-    font-size: 1rem;
-    border-radius: 0.5rem;
-    box-shadow: none;
+    font-size: 1rem !important;
+    border-radius: 0.5rem !important;
+    box-shadow: none !important;
 }
 
 .form-control:focus:placeholder {
-    color: #506690;
+    color: #506690 !important;
 }
 
 /* Textareas */
