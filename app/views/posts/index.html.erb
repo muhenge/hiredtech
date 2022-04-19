@@ -1,38 +1,22 @@
-<nav class="navbar navbar-light bg-white">
-  <a href="#" class="navbar-brand">Bootsbook</a>
-  <form class="form-inline">
-    <div class="input-group">
-      <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
-      <div class="input-group-append">
-        <button class="btn btn-outline-primary" type="button" id="button-addon2">
-          <i class="fa fa-search"></i>
-        </button>
-      </div>
-    </div>
-  </form>
-</nav>
-
-<div class="container-fluid gedf-wrapper">
+<div class="container gedf-wrapper">
   <div class="row">
     <div class="col-md-3">
       <div class="card">
         <div class="card-body">
-          <div class="h5">@LeeCross</div>
-          <div class="h7 text-muted">Fullname : Miracles Lee Cross</div>
-          <div class="h7">Developer of web applications, JavaScript, PHP, Java, Python, Ruby, Java, Node.js,
-            etc.
-          </div>
+          
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
             <div class="h6 text-muted">Followers</div>
-            <div class="h5">5.2342</div>
+            <div class="h5"><%= current_user.followers.count %></div>
           </li>
           <li class="list-group-item">
             <div class="h6 text-muted">Following</div>
-            <div class="h5">6758</div>
+            <div class="h5">
+              <%=current_user.following.count%>
+            </div>
           </li>
-          <li class="list-group-item">Vestibulum at eros</li>
+          
         </ul>
       </div>
     </div>
@@ -53,8 +37,8 @@
         <div class="card-body">
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Launch demo modal
+              <button type="button" class="btn btn-light w-100 justify-content-start" data-toggle="modal" data-target="#exampleModal">
+                Post here
               </button>
 
               <!-- Modal -->
@@ -75,7 +59,7 @@
                       <%= f.select :skill_id, options_for_select(Skill.all.collect{ |u| [u.name, u.id] }), {prompt:"Tag to skill"}, {class: "form-control selectpicker", data: {"live-search": true}}%><br>
                     </div>
                     <div class="modal-footer">
-                      <%= button_tag( :class => "btn btn-primary w-100") do %>
+                      <%= button_tag( :class => "btn btn-primary w-100 btn-lg") do %>
                         <i class="fas fa-comment-alt"></i> Post
                       <% end %>
                     </div>
@@ -141,27 +125,6 @@
       <%end%>
    
     </div>
-    <div class="col-md-3">
-      <div class="card gedf-card">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-            card's content.</p>
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
-        </div>
-      </div>
-      <div class="card gedf-card">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-            card's content.</p>
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
-        </div>
-      </div>
-    </div>
+  
   </div>
 </div>
