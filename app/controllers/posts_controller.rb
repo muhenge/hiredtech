@@ -45,15 +45,13 @@ class PostsController < ApplicationController
 
   end
 
-    private
+  private
 
   def post_params
     params.require(:post).permit(:content,:comment_id,:image,:user_id, :created_at, :skill_id, :career_id)
   end
 
-    private
-
   def set_post
-    @post = Post.includes(:comments).find(params[:id])
+    @post = Post.friendly.includes(:user,:comments).find(params[:id])
   end
 end

@@ -42,7 +42,7 @@
                         <div>
                         </div>
                     </div>
-                    <a class="nav-item avatar-link avatar rounded-circle" href="#" id="navbar-primary_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= image_tag user_avatar(current_user), class:"avatar nav-item rounded-circle mx-2"%><span class="nav-item">Me</span></a>
+                    <a class="nav-item avatar-link avatar rounded-circle" href="#" id="navbar-primary_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= image_tag user_avatar(current_user), class:"avatar nav-item rounded-circle mx-2",width:"45"%><span class="nav-item">Me</span></a>
                     
                     <div class="dropdown-menu dropdown-menu-right shadow-sm border" aria-labelledby="navbar-primary_dropdown_1">
                         <%= link_to  user_path(current_user),class:"dropdown-item", :action =>'go' do%>
@@ -50,7 +50,7 @@
                         <%end%>
                         <div class="dropdown-divider"></div>
                         <%= link_to  destroy_user_session_path ,class:"dropdown-item", :action =>'go' do%>
-                            <i class="fas fa-sign-out-alt"></i>  Logout
+                            <i class="fas fa-sign-out-alt"></i> Logout
                         <%end%>
                     </div>
                 </li>
