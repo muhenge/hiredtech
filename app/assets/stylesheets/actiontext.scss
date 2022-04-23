@@ -33,4 +33,15 @@
       max-width: 100% !important;
     }
   }
+  text_editor {
+    .form-control {
+      height: auto !important;
+    }
+  }
+  text_editor {
+    img {
+      height: auto !important;
+      width: auto !important;
+    }
+  }
 }

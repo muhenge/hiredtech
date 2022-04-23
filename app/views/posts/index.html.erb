@@ -51,7 +51,7 @@
                     </div>
                     <div class="modal-body">
                       <%= form_for Post.new, :url => posts_path(), :method => :post do |f| %>
-                      <%= f.rich_text_area :content, placeholder: "Post here", class:"w-100 form-control",cols: 60, rows: 15 %><br>
+                      <%= f.rich_text_area :content, placeholder: "Post here", class:"form-control" %><br>
                       <%= f.select(:career_id, Career.all.collect {|u| [u.field, u.id]}, {:prompt => 'Tag to a career'},{class: "form-control selectpicker",data: {"live-search": true}}) %><br><br>
                       <%= f.select :skill_id, options_for_select(Skill.all.collect{ |u| [u.name, u.id] }), {prompt:"Tag to skill"}, {class: "form-control selectpicker", data: {"live-search": true}}%><br>
                     </div>
@@ -94,7 +94,7 @@
                       <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i><%= post.created_at.strftime("%Y-%m-%d") %></div>
                      
                       <p class="card-text">
-                        <%= link_to simple_format(post.content), post_path(post), class:"text-black" %>          
+                        <%= link_to simple_format(post.content).truncate(200), post_path(post), class:"text-black" %>          
                       </p>
                     </div>
                     <div class="card-footer">
