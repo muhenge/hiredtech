@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_16_134716) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_04_19_083342) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,8 +19,8 @@ ActiveRecord::Schema.define(version: 2021_05_16_134716) do
     t.text "body"
     t.string "record_type", null: false
     t.bigint "record_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 
@@ -30,7 +29,7 @@ ActiveRecord::Schema.define(version: 2021_05_16_134716) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -43,7 +42,7 @@ ActiveRecord::Schema.define(version: 2021_05_16_134716) do
     t.string "service_name", null: false
     t.bigint "byte_size", null: false
     t.string "checksum", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -55,8 +54,8 @@ ActiveRecord::Schema.define(version: 2021_05_16_134716) do
 
   create_table "careers", force: :cascade do |t|
     t.string "field"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "post_id"
   end
 
@@ -64,17 +63,28 @@ ActiveRecord::Schema.define(version: 2021_05_16_134716) do
     t.text "text"
     t.bigint "post_id", null: false
     t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
   create_table "posts", force: :cascade do |t|
     t.text "content"
     t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "comment_id"
     t.integer "skill_id"
     t.integer "career_id"
@@ -85,14 +95,16 @@ ActiveRecord::Schema.define(version: 2021_05_16_134716) do
     t.integer "cached_weighted_score", default: 0
     t.integer "cached_weighted_total", default: 0
     t.float "cached_weighted_average", default: 0.0
+    t.string "slug"
+    t.index ["slug"], name: "index_posts_on_slug", unique: true
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
@@ -101,8 +113,8 @@ ActiveRecord::Schema.define(version: 2021_05_16_134716) do
   create_table "skills", force: :cascade do |t|
     t.string "name"
     t.integer "level"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "user_id"
   end
 
@@ -115,18 +127,21 @@ ActiveRecord::Schema.define(version: 2021_05_16_134716) do
     t.string "bio", default: "", null: false
     t.string "about", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "reset_password_sent_at", precision: nil
+    t.string "github_id"
+    t.datetime "remember_created_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "skill_id"
     t.integer "career_id"
+    t.string "slug"
     t.index ["about"], name: "index_users_on_about"
     t.index ["bio"], name: "index_users_on_bio"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["firstname"], name: "index_users_on_firstname"
     t.index ["lastname"], name: "index_users_on_lastname"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["slug"], name: "index_users_on_slug", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
@@ -138,8 +153,8 @@ ActiveRecord::Schema.define(version: 2021_05_16_134716) do
     t.boolean "vote_flag"
     t.string "vote_scope"
     t.integer "vote_weight"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
     t.index ["votable_type", "votable_id"], name: "index_votes_on_votable_type_and_votable_id"
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"

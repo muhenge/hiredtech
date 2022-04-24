@@ -1,135 +1,156 @@
-    <div class="row">
-        <div class="col-md-12 d-flex justify-content-center">
-            
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Post something</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <%= form_for Post.new, :url => posts_path(), :method => :post do |f| %>
-    <%= f.rich_text_area :content, placeholder: "Post here", class:"w-100 text",cols: 60, rows: 15 %>
-    
-         <%= f.select(:career_id, Career.all.collect {|u| [u.field, u.id]}, {:prompt => 'Tag to a career'},{class: "form-control selectpicker",data: {"live-search": true}}) %><br><br>
-        <%= f.select :skill_id, options_for_select(Skill.all.collect{ |u| [u.name, u.id] }), {prompt:"Tag to skill"}, {class: "form-control selectpicker", data: {"live-search": true}}%>
-    </div><br>
-      <div class="modal-footer">
-        <%= button_tag( :class => "btn btn-primary w-100") do %>
-            <i class="fas fa-comment-alt"></i> Post
-        <% end %>
-        <%end%>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-    </div>
- <div class="card pmd-card">
-  <div class="pmd-tabs pmd-tabs-dark bg-white" scroll="true">
-      <ul role="tablist" class="nav nav-tabs nav-fill">
-        <li class="nav-item" role="presentation"><a class="nav-link active" data-toggle="tab" role="tab" aria-controls="home" href="#home-fixed"><%= current_user.career.field.capitalize %> posts</a></li>
-        <li class="nav-item"><a class="nav-link" data-toggle="tab" role="tab" aria-controls="profile" href="#about-fixed">My posts</a></li>
-        <li class="nav-item"><a class="nav-link" data-toggle="tab" role="tab" aria-controls="messages" href="#work-fixed">My connection's posts</a></li>
-      </ul>
-  </div>
-  <div class="card-body">
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="home-fixed">
-                  <div class="posts">
-         
-                    <% @career_post.each do |post| %>
-                  
-               <div class="d-flex flex-column border rounded p-2 mb-2">
-               <%= link_to post_user_path(post, post.user), :action => 'go' do %>
-                <%= image_tag user_avatar(post.user), class:"border rounded-circle img-profile"%>
-                <%= post.user.username.capitalize %>
-               <%end%>
-                
-                <hr> 
-                <div class="post-content">
-                      <%= simple_format(post.content) %>
-                  </div>
-                  <hr>
-                  <div class="d-flex flex-row">
-                    <div>
-                        <%= link_to post_path(post), class:"border p-2 shadow-sm rounded", :action => "go" do %>
-                          <i class="fas fa-comments"></i> Read or Comment
-                        <%end%>
-                    </div>
-                    <div>
-                      <%= link_to like_post_path(post),class:"like-btn", method: :put, remote: :true do%>
-                                <span><i class="fas fa-thumbs-up"></i></span>
-                                
-                        <% end %>
-                        <span class="likes-count"><%= post.get_upvotes.size %></span>
-                    </div>
-                  </div>  
-              </div>
-                <% end %>
-                </div>
+<div class="container gedf-wrapper">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          
         </div>
-        <div role="tabpanel" class="tab-pane" id="about-fixed">
-          <div class="posts">
-            <% @user_posts.each do |post| %>
-              <div class="d-flex flex-column border rounded p-2 mb-2">
-                <div class="post-content">
-                <div class="attach">
-                </div>
-                <%= link_to post_path(post), :action => 'go' do %>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <div class="h6 text-muted">Followers</div>
+            <div class="h5"><%= current_user.followers.count %></div>
+          </li>
+          <li class="list-group-item">
+            <div class="h6 text-muted">Following</div>
+            <div class="h5">
+              <%=current_user.following.count%>
+            </div>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-6 gedf-main">
 
-                  <%= simple_format(post.content) %>
+      <div class="card gedf-card">
+        <div class="card-header">
+          <ul class="nav nav-wrapper card-header-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true">Feeds</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="images-tab" data-toggle="tab" role="tab" aria-controls="images" aria-selected="false" href="#images">Your posts</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body">
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
+              <button type="button" class="btn btn-light w-100 justify-content-start" data-toggle="modal" data-target="#exampleModal">
+                Post here
+              </button>
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Post here</h5>
 
-                <%end%>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <%= form_for Post.new, :url => posts_path(), :method => :post do |f| %>
+                      <%= f.rich_text_area :content, placeholder: "Post here", class:"form-control" %><br>
+                      <%= f.select(:career_id, Career.all.collect {|u| [u.field, u.id]}, {:prompt => 'Tag to a career'},{class: "form-control selectpicker",data: {"live-search": true}}) %><br><br>
+                      <%= f.select :skill_id, options_for_select(Skill.all.collect{ |u| [u.name, u.id] }), {prompt:"Tag to skill"}, {class: "form-control selectpicker", data: {"live-search": true}}%><br>
+                    </div>
+                    <div class="modal-footer">
+                      <%= button_tag( :class => "btn btn-primary w-100 btn-lg") do %>
+                        <i class="fas fa-comment-alt"></i> Post
+                      <% end %>
+                    </div>
+                    <%end%>
+
+                  </div>
                 </div>
               </div>
-            <%end%>
+
+            </div>
+            <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
+              <div class="form-group">
+                <%current_user.posts.each do |post|%>
+                    <div class="card gedf-card border shadow-sm my-2">
+                    <div class="card-header">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="mr-2">
+                            <%= link_to user_path(post.user), :action => 'go' do %>
+                              <%= image_tag user_avatar(post.user), class:"border rounded-circle", width:"45"%>
+                            <%end%>
+                          </div>
+                          <div class="ml-2">
+                            <div class="h5 m-0"><%= link_to post.user.username, user_path(post.user) %></div>
+                            <div class="h7 text-muted"><%= post.career.field %></div>
+                          </div>
+                        </div>
+                        <div>
+                          
+                        </div>
+                      </div>
+            
+                    </div>
+                    <div class="card-body">
+                      <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i><%= post.created_at.strftime("%Y-%m-%d") %></div>
+                     
+                      <p class="card-text">
+                        <%= link_to simple_format(post.content).truncate(200), post_path(post), class:"text-black" %>          
+                      </p>
+                    </div>
+                    <div class="card-footer">
+                      <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
+                      <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
+                      <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
+                    </div>
+                  </div>
+                <%end%>
+              </div>
+              <div class="py-4"></div>
+            </div>
+          </div>
+          <div class="btn-toolbar justify-content-between">
+            
           </div>
         </div>
-        <div role="tabpanel" class="tab-pane" id="work-fixed">
-        <div class="posts">
-           <% current_user.following.each do |followed| %>
-                    <% followed.posts.most_recent.each do |post| %>
-                  
-               <div class="d-flex flex-column border rounded p-2 mb-2">
-               <%= link_to post_user_path(post, post.user), :action => 'go' do %>
-                <%= image_tag user_avatar(post.user), class:"border rounded-circle img-profile"%>
-                <%= post.user.username.capitalize %>
-               <%end%>
-                
-                <hr> 
-                <div class="post-content">
-                      <%= simple_format(post.content) %>
-                  </div>
-                  <hr>
-                  <div class="d-flex flex-row">
-                    <div>
-                        <%= link_to post_path(post), class:"border p-2 shadow-sm rounded", :action => "go" do %>
-                          <i class="fas fa-comments"></i> Read or Comment
-                        <%end%>
-                    </div>
-                    <div>
-                      <%= link_to like_post_path(post),class:"like-btn", method: :put, remote: :true do%>
-                                <span><i class="fas fa-thumbs-up"></i></span>
-                                
-                        <% end %>
-                        <span class="likes-count"><%= post.get_upvotes.size %></span>
-                    </div>
-                  </div>  
+      </div>
+
+      <%@career_posts.each do |c|%>
+      <div class="card gedf-card border shadow-sm my-2">
+        <div class="card-header">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="mr-2">
+                <%= link_to user_path(c.user), :action => 'go' do %>
+                  <%= image_tag user_avatar(c.user), class:"border rounded-circle", width:"45"%>
+                <%end%>
               </div>
-                <% end %>
-                <% end %>
-                </div>
+              <div class="ml-2">
+                <div class="h5 m-0"><%= link_to c.user.username, user_path(c.user) %></div>
+                <div class="h7 text-muted"><%= c.career.field %></div>
+              </div>
+            </div>
+            <div>
+              
+            </div>
+          </div>
+
+        </div>
+        <div class="card-body">
+          <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i><%= c.created_at.strftime("%Y-%m-%d") %></div>
+         
+          <p class="card-text">
+            <%= link_to simple_format(c.content), post_path(c), class:"text-black" %>          
+          </p>
+        </div>
+        <div class="card-footer">
+          <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
+          <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
+          <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
         </div>
       </div>
+      <%end%>
+   
+    </div>
+  
   </div>
-</div> <!--Fixed tab example end-->
-
-<button type="button" class="btn-circle btn-xl btn-success btn-post" data-toggle="modal" data-target="#exampleModalCenter">
-                   <i class="fas fa-comment-alt"></i>
-            </button>
+</div>

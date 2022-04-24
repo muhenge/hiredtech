@@ -4,14 +4,14 @@ class PostsController < ApplicationController
   respond_to :js, :json, :html
 
   def index
-    @user_posts = current_user.posts.most_recent
-    @career_post = current_user.career.posts
+    @posts = Post.all.includes(:user, :comments, :career).most_recent
+    @career_posts = @posts.where(career_id: current_user.career_id)
+    @skill_posts = @posts.where(skill_id: current_user.skill_id)
+    @comment = Comment.new
   end
 
   def show
     @comment = Comment.new
-
-    @comments = @post.comments.most_recent
   end
 
   def new
@@ -43,19 +43,15 @@ class PostsController < ApplicationController
       @post.unliked_by current_user
     end
 
-      # @post.upvote_by current_user
-      # redirect_back fallback_location: root_path
   end
 
-    private
+  private
 
   def post_params
     params.require(:post).permit(:content,:comment_id,:image,:user_id, :created_at, :skill_id, :career_id)
   end
 
-    private
-
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.friendly.includes(:user,:comments).find(params[:id])
   end
 end
